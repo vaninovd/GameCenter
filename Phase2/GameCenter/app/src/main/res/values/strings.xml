@@ -1,0 +1,27 @@
+<resources>
+    <string name="slidingtiles">SlidingTiles</string>
+    <string name="app_name">GameCenter</string>
+    <string name="welcome">Welcome</string>
+    <string name="please_sign_in_if_you_have_an_account_or_sign_up_if_you_re_new">Please sign in if you have an account, or sign up if you\'re new.</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="please_enter_your_credentials">Please enter your credentials.</string>
+    <string name="finish">Finish</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="welcome_to_sliding_tiles_n_a_puzzle_game_where_you_must_arrange_the_numbers_in_the_correct_order">Welcome To Sliding Tiles   A Puzzle Game where you must arrange the numbers in the correct order</string>
+    <string name="new_game">New Game</string>
+    <string name="load_saved_game">Load Saved Game</string>
+    <string name="save_game">Save Game</string>
+    <string name="radiobutton">RadioButton</string>
+    <string name="radiobutton2">RadioButton</string>
+    <string name="radiobutton3">RadioButton</string>
+    <string name="complexityMessage">TextView</string>
+    <string name="checkbox">CheckBox</string>
+    <string name="undoMessage">TextView</string>
+    <string name="startGame">Button</string>
+    <string name="select_the_size_of_the_board">Select the size of the board:</string>
+    <string name="enter_the_number_of_undo_s_available_by_default_3">Enter the number of undos available (by default 3):</string>
+    <string name="scoreboard">Scoreboard</string>
+</resources>
