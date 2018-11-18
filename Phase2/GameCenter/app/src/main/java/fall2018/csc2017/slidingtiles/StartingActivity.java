@@ -20,7 +20,6 @@ import java.io.ObjectOutputStream;
 public class StartingActivity extends AppCompatActivity {
 
     public static final String name = "SlidingTiles";
-
     /**
      * The main save file.
      */

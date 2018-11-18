@@ -43,7 +43,7 @@ public class Tile implements Comparable<Tile>, Serializable {
      * @param id         the id
      * @param background the background
      */
-    public Tile(int id, int background) {
+    Tile(int id, int background) {
         this.id = id;
         this.background = background;
     }
@@ -53,7 +53,7 @@ public class Tile implements Comparable<Tile>, Serializable {
      *
      * @param backgroundId
      */
-    public Tile(int backgroundId) {
+    Tile(int backgroundId) {
         id = backgroundId + 1;
         if (Board.NUM_COLS == 3) {
             tile3x3(backgroundId);

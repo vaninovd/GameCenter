@@ -38,10 +38,8 @@ class BoardManager implements Serializable {
     private int undosLeft = 0;
 
     /**
-     * The number of undos made.
+     * Total count of moves, including undos.
      */
-    private int undosNum = 0;
-
     private static int numMoves = 0;
 
     /**
@@ -54,34 +52,6 @@ class BoardManager implements Serializable {
         this.board = board;
         this.maxUndos = 3;
         this.unlimitedMoves = false;
-    }
-
-    /**
-     * Manage a new shuffled default (3 undos allowed) board.
-     */
-    BoardManager() {
-        List<Tile> tiles = new ArrayList<>();
-        final int numTiles = Board.NUM_ROWS * Board.NUM_COLS;
-        for (int tileNum = 0; tileNum != numTiles; tileNum++) {
-            tiles.add(new Tile(tileNum));
-        }
-        Collections.shuffle(tiles);
-        this.board = new Board(tiles);
-        this.moves = new ArrayList<>();
-        this.maxUndos = 3;
-        this.unlimitedMoves = false;
-    }
-
-    /**
-     * Manage a board that has been pre-populated with options to select number of undos.
-     *
-     * @param board the board
-     */
-
-    BoardManager(Board board, boolean unlimited, int maxUndos) {
-        this.board = board;
-        this.maxUndos = maxUndos;
-        this.unlimitedMoves = unlimited;
     }
 
     /**
@@ -199,11 +169,6 @@ class BoardManager implements Serializable {
             //throw out of bounds exception as if we were trying to remove element from empty list
             throw new IndexOutOfBoundsException();
         }
-        undosNum++;
-    }
-
-    public void setBoard(Board board) {
-        this.board = board;
     }
 
     /**

@@ -37,7 +37,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ScoreboardAdapter" />
-        <activity android:name=".MainListView"></activity>
+        <activity android:name=".MainListView">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

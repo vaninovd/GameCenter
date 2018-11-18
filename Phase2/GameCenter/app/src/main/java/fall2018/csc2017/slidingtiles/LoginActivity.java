@@ -14,8 +14,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * The main activity for the sign up/sign in page
@@ -25,18 +23,26 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * UserManager to manage all users on this device.
      */
-    public static UserManager users = new UserManager();
+    public static UserManager users;
 
     /**
      * File name for users save.
      */
-    public static final String userSave = "users.ser";
+    public static final String USER_SAVE = "users.ser";
+
+    /**
+     * Temp file name for users save.
+     */
+    public static final String USER_SAVE_TEMP = "users_temp.ser";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadFromFile(userSave);
+        loadFromFile(USER_SAVE);
+        if (users == null) {
+            users = new UserManager();
+        }
         users.addUser("admin", "admin");
         setContentView(R.layout.activity_landing);
         addSignInButtonListener();
@@ -57,8 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                     makeNoAccountToast();
                 } else if (users.checkCredentials(username.getText().toString(), pass.getText().toString())) {
                     users.setCurrentUser(username.getText().toString());
-                    setSaveFilename(users.getCurrentUser());
-                    System.out.println(users.getCurrentUser());
+                    setSaveFilename(UserManager.getCurrentUser());
                     switchToSlidingTiles();
                 } else {
                     makeIncorrectPasswordToast();
@@ -85,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void switchToSignUp() {
         Intent tmp = new Intent(this, SignUpActivity.class);
+        saveToFile(USER_SAVE_TEMP);
         startActivity(tmp);
     }
 
@@ -129,8 +135,7 @@ public class LoginActivity extends AppCompatActivity {
      * Loads UserManager users from filename
      * @param fileName the name of the file.
      */
-    private void loadFromFile(String fileName) {
-
+    public void loadFromFile(String fileName) {
         try {
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
@@ -147,6 +152,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sets the save filename, based on which user is the current active user.
+     * @param filename The filename we wish to change to.
+     */
     public void setSaveFilename(String filename) {
         StartingActivity.SAVE_FILENAME = filename + ".ser";
         StartingActivity.TEMP_SAVE_FILENAME = filename + "_temp.ser";

@@ -2,8 +2,6 @@ package fall2018.csc2017.slidingtiles;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,33 +10,48 @@ import android.widget.TextView;
 
 import java.util.List;
 
-// this is our custom adapter for a scoreboard
+/**
+ * The custom adapter for Scoreboard display.
+ * Extends BaseAdapter.
+ */
 public class ScoreboardAdapter extends BaseAdapter {
 
     private Context mContext;
     private LayoutInflater inflater;
-    private List<User> itemsItems;
+    private List<User> usersList;
 
-    public ScoreboardAdapter(Context context, List<User> itemsItems) {
+    public ScoreboardAdapter(Context context, List<User> usersList) {
         this.mContext = context;
-        this.itemsItems = itemsItems;
+        this.usersList = usersList;
     }
 
+    /**
+     * Getter for the score count.
+     */
     @Override
     public int getCount() {
-        return itemsItems.size();
+        return usersList.size();
     }
 
+    /**
+     * Returns the user at the specified position of our usersList.
+     */
     @Override
     public Object getItem(int location) {
-        return itemsItems.get(location);
+        return usersList.get(location);
     }
 
+    /**
+     * Adapter interface method to return position in the list.
+     */
     @Override
     public long getItemId(int position) {
         return position;
     }
 
+    /**
+     * Implementation of interface method to generate an item's view in a List View
+     */
     @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View scoreView, ViewGroup parent) {
@@ -50,9 +63,9 @@ public class ScoreboardAdapter extends BaseAdapter {
 
             scoreView = inflater.inflate(R.layout.activity_scoreboard, parent, false);
             holder = new ViewHolder();
-            holder.name = (TextView) scoreView.findViewById(R.id.name);
-            holder.score = (TextView) scoreView.findViewById(R.id.score);
-//            holder.undo = (TextView) scoreView.findViewById(R.id.undo);
+
+            holder.name = scoreView.findViewById(R.id.name);
+            holder.score = scoreView.findViewById(R.id.score);
 
             scoreView.setTag(holder);
 
@@ -60,13 +73,16 @@ public class ScoreboardAdapter extends BaseAdapter {
             holder = (ViewHolder) scoreView.getTag();
         }
 
-        final User m = itemsItems.get(position);
+        final User m = usersList.get(position);
         holder.name.setText(m.getName());
-        holder.score.setText(m.getScores().get(StartingActivity.name).toString());
+        holder.score.setText(Integer.toString(m.getScore(StartingActivity.name)));
 
         return scoreView;
     }
 
+    /**
+     * This class ensures smooth scrolling of our list
+     */
     static class ViewHolder {
         TextView name;
         TextView score;

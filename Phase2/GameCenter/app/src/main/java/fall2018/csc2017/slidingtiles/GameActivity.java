@@ -2,6 +2,7 @@ package fall2018.csc2017.slidingtiles;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -99,6 +100,17 @@ public class GameActivity extends AppCompatActivity implements Observer {
                         display();
                     }
                 });
+        switchtoScoreboard();
+    }
+
+    /**
+     * Switch to ScoreBoard view after game ends.
+     */
+    private void switchtoScoreboard() {
+        if (boardManager.puzzleSolved()){
+            Intent switchtoscore = new Intent(this, MainListView.class);
+            startActivity(switchtoscore);
+        }
     }
 
     /**
@@ -118,6 +130,10 @@ public class GameActivity extends AppCompatActivity implements Observer {
         }
     }
 
+    /**
+     * Process an undo tap when there are no more undos left.
+     * @param view the current view
+     */
     public void undoButton(View view) {
         try {
             this.boardManager.undoMove();

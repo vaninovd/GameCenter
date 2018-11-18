@@ -15,6 +15,7 @@ public class SignUpActivity extends LoginActivity {
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        loadFromFile(USER_SAVE_TEMP);
         setContentView(R.layout.sign_up_activity);
         addFinishSignUpButtonListener();
     }
@@ -49,7 +50,7 @@ public class SignUpActivity extends LoginActivity {
             makeValidCredentialsToast();
         } else {
             users.addUser(user.getText().toString(), pass.getText().toString());
-            saveToFile(userSave);
+            saveToFile(USER_SAVE);
             makeAccountCreatedToast();
             switchToMain();
         }

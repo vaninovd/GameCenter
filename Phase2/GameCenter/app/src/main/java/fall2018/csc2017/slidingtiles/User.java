@@ -5,35 +5,63 @@ import java.util.HashMap;
 import android.support.annotation.NonNull;
 
 public class User implements Comparable<User>, Serializable {
+
+    /**
+     * Name of this user.
+     */
     private String name;
-    private int score;
+
+
+    /**
+     * Hashmap storing the scores (values) the user got in different games (keys).
+     */
     private HashMap<String, Integer> scores = new HashMap<>();
 
-    public User(String name, int score) {
+    public User(String name) {
         this.name = name;
-        this.score = score;
     }
 
+
+    /**
+     * Return the name of this user.
+     * @return String name.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set the name for this user.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-    public int getScore() {
-        return score;
+    /**
+     * Return user's score.
+     * @return int user's score
+     */
+    public int getScore(String name) {
+        if (scores.containsKey(name)) {
+            return scores.get(name);
+        }
+            return 0;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
+    /**
+     * Return the hashmap containing the scores of this user for various games.
+     * @return hashmap scores with user's scores
+     */
     public HashMap getScores() {
         return scores;
     }
 
+
+    /**
+     * Add a score that user scored in game to hashmap that stores the scores.
+     * @param game name of the game for which to record the score
+     * @param score score to record
+     */
     public void addScore(String game, Integer score) {
         if (scores.containsKey(game)) {
             if (scores.get(game) < score) { scores.replace(game, score); }
@@ -42,21 +70,31 @@ public class User implements Comparable<User>, Serializable {
         }
     }
 
+    /**
+     * Return the score for the game.
+     * @param game game to return the score for
+     * @return int score for game
+     */
     public int getGameScore(String game) {
         int score;
         if (scores.containsKey(game)){
             score = scores.get(game);
         } else {
-            score = -1;
+            score = 0;
         }
         return score;
     }
 
+    /**
+     * Compare users by their scores.
+     * @param secondUser a user to compare this user to
+     * @return int -1, 0, or 1 depending on whose score is higher.
+     */
     @Override
     public int compareTo(@NonNull User secondUser) {
-        if (this.score < secondUser.score){
+        if (this.getScore(StartingActivity.name) < secondUser.getScore(StartingActivity.name)){
             return 1;
-        } else if (this.score > secondUser.score){
+        } else if (this.getScore(StartingActivity.name) > secondUser.getScore(StartingActivity.name)){
             return -1;
         }
         return 0;

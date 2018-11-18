@@ -33,7 +33,7 @@ public class UserManager implements Serializable {
      */
     public void addUser(String user, String pass) {
         if (!credentials.containsKey(user)) {
-            User newUser = new User(user, 0);
+            User newUser = new User(user);
             this.credentials.put(user, pass);
             this.users.add(newUser);
         }
@@ -55,7 +55,7 @@ public class UserManager implements Serializable {
     }
 
     /**
-     * Returns whether or not the UserManager has a given user.
+     * Returns whether a given user exists.
      * @param username
      * @return
      */
