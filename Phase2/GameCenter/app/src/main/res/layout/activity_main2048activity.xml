@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="game2048.main2048activity">
+    tools:context=".main2048activity">
 
 </android.support.constraint.ConstraintLayout>

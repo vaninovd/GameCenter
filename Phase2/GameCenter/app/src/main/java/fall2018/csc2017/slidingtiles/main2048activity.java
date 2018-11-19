@@ -1,4 +1,4 @@
-package game2048;
+package fall2018.csc2017.slidingtiles;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
