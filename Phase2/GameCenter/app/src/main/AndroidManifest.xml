@@ -43,7 +43,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main2048" />
-        <activity android:name=".Matrix"></activity>
+        <activity android:name=".Matrix2048" />
+        <activity android:name=".Scorebox2048"></activity>
     </application>
 
 </manifest>
