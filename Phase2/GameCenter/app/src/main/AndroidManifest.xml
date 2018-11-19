@@ -42,6 +42,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name="game2048.main2048activity"></activity>
     </application>
 
 </manifest>
