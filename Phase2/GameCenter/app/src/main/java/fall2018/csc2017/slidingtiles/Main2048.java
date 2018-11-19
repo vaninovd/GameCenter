@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import fall2018.csc2017.slidingtiles.R;
 
-public class main2048activity extends AppCompatActivity {
+public class Main2048 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
