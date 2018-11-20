@@ -47,12 +47,12 @@ public class TileFlipCard {
         blank = bLaNk_pIc;
     }
 
-    private void flipUp() {
+    public void flipUp() {
         this.front = this.picture;
         this.isUp = true;
     }
 
-    private void flipDown() {
+    public void flipDown() {
         this.front = this.blank;
         this.isUp = false;
     }
