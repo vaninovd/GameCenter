@@ -4,11 +4,19 @@ public class TileFlipCard {
 
     private int id;
 
+    public int getPicture() {
+        return picture;
+    }
+
     private int picture;
 
     private int blank;
 
     private int front;
+
+    public boolean isUp() {
+        return isUp;
+    }
 
     private boolean isUp = false;
 
