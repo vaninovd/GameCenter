@@ -44,6 +44,7 @@ class BoardManagerFlipCard implements Serializable {
         final int numTiles = BoardFlipCard.NUM_ROWS * BoardFlipCard.NUM_COLS;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
             tiles.add(new TileFlipCard(tileNum));
+            tiles.add(new TileFlipCard(tileNum));
         }
         Collections.shuffle(tiles);
         this.board = new BoardFlipCard(tiles);
