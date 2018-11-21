@@ -117,7 +117,7 @@ class BoardManagerFlipCard implements Serializable {
      * tiles null. If temporary tiles do not match, flip both tiles back, make both temp tiles null.
      */
     public void analyzeMove() {
-        if (tempTile1.getPicture() == tempTile2.getPicture()) {
+        if (tempTile1.getId() == tempTile2.getId()) {
         } else {
             tempTile1.flipDown();
             tempTile2.flipDown();
