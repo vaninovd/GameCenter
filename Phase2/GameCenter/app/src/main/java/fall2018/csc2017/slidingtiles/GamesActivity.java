@@ -70,7 +70,7 @@ public class GamesActivity extends AppCompatActivity {
      */
     private void switchTo2048() {
         // Temporary Main2048.class or not?
-        Intent tmp = new Intent(this, Main2048.class);
+        Intent tmp = new Intent(this, StartingActivity2048.class);
         startActivity(tmp);
     }
 
