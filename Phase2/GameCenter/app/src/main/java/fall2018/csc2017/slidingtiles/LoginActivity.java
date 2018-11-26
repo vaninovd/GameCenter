@@ -64,12 +64,21 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (users.checkCredentials(username.getText().toString(), pass.getText().toString())) {
                     users.setCurrentUser(username.getText().toString());
                     setSaveFilename(UserManager.getCurrentUser());
-                    switchToSlidingTiles();
+                    switchToGamesActivity();
+//                    switchToSlidingTiles();
                 } else {
                     makeIncorrectPasswordToast();
                 }
             }
         });
+    }
+
+    /**
+     * Switches to Games Activity
+     */
+    private void switchToGamesActivity() {
+        Intent tmp = new Intent(this, GamesActivity.class);
+        startActivity(tmp);
     }
 
     /**
