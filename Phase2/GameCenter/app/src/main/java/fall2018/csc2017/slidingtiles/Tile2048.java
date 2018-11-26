@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import java.io.Serializable;
 
 /**
- * A Tile in a sliding tiles puzzle.
+ * A TileSlidingTiles in a sliding tiles puzzle.
  */
 public class Tile2048 implements Comparable<Tile2048>, Serializable {
 

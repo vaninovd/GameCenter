@@ -45,7 +45,7 @@ public class TileFlipCard implements Comparable<TileFlipCard>, Serializable{
      */
     TileFlipCard(int tileId) {
         this.back = tileId;
-        if (Board.NUM_COLS == 4) {
+        if (BoardSlidingTiles.NUM_COLS == 4) {
             flipCard4x4(id);
         }
         else {

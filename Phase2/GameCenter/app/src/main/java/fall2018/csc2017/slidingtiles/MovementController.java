@@ -3,20 +3,20 @@ package fall2018.csc2017.slidingtiles;
 import android.content.Context;
 import android.widget.Toast;
 
-import static fall2018.csc2017.slidingtiles.BoardManager.getNumMoves;
+import static fall2018.csc2017.slidingtiles.BoardManagerSlidingTiles.getNumMoves;
 
 
 public class MovementController {
 
-    private BoardManager boardManager = null;
+    private BoardManagerSlidingTiles boardManager = null;
 
     public MovementController() {
     }
 
     /**
-     * Set the BoardManager to the current board manager of the game.
+     * Set the BoardManagerSlidingTiles to the current board manager of the game.
      */
-    public void setBoardManager(BoardManager boardManager) {
+    public void setBoardManager(BoardManagerSlidingTiles boardManager) {
         this.boardManager = boardManager;
     }
 
@@ -25,13 +25,13 @@ public class MovementController {
      */
     public void processTapMovement(Context context, int position, boolean display) {
         if (boardManager.isValidTap(position)) {
-            BoardManager.setNumMoves(getNumMoves() + 1);
+            BoardManagerSlidingTiles.setNumMoves(getNumMoves() + 1);
             boardManager.touchMove(position);
             if (boardManager.puzzleSolved()) {
                 Toast.makeText(context, "YOU WIN! Check out the LEADERBOARD!", Toast.LENGTH_SHORT).show();
                 String username = UserManager.currentUser;
                 User curruser = LoginActivity.users.getUser(username);
-                int score = BoardManager.getNumMoves();
+                int score = BoardManagerSlidingTiles.getNumMoves();
                 curruser.addScore(StartingActivity.name, score);
             }
         } else {

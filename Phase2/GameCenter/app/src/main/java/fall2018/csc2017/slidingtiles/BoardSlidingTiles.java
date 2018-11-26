@@ -13,10 +13,10 @@ import java.util.List;
 /**
  * The sliding tiles board.
  */
-public class Board extends Observable implements Serializable, Iterable<Tile> {
+public class BoardSlidingTiles extends Observable implements Serializable, Iterable<TileSlidingTiles> {
 
     /**
-     * The number of rows in Board.
+     * The number of rows in BoardSlidingTiles.
      */
     static int NUM_ROWS;
 
@@ -28,7 +28,7 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
     /**
      * The tiles on the board in row-major order.
      */
-    public Tile[][] tiles = new Tile[NUM_ROWS][NUM_COLS];
+    public TileSlidingTiles[][] tiles = new TileSlidingTiles[NUM_ROWS][NUM_COLS];
 
     /**
      * Row index of blank tile.
@@ -46,12 +46,12 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
      *
      * @param tiles the tiles for the board
      */
-    Board(List<Tile> tiles) {
-        Iterator<Tile> tIterator = tiles.iterator();
+    BoardSlidingTiles(List<TileSlidingTiles> tiles) {
+        Iterator<TileSlidingTiles> tIterator = tiles.iterator();
 
-        for (int row = 0; row != Board.NUM_ROWS; row++) {
-            for (int col = 0; col != Board.NUM_COLS; col++) {
-                Tile tile = tIterator.next();
+        for (int row = 0; row != BoardSlidingTiles.NUM_ROWS; row++) {
+            for (int col = 0; col != BoardSlidingTiles.NUM_COLS; col++) {
+                TileSlidingTiles tile = tIterator.next();
                 //if detected blank tile, set blank tile coordinates
                 if (tile.getId() == this.numTiles()) {
                     blankRow = row;
@@ -79,13 +79,13 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
      * @param col the tile column
      * @return the tile at (row, col)
      */
-    Tile getTile(int row, int col) {
+    TileSlidingTiles getTile(int row, int col) {
         return tiles[row][col];
     }
 
     /**
      * Swap the tiles at (row1, col1) and (row2, col2).
-     * Precondition: Tile at (row1, col1) is the blank tile.
+     * Precondition: TileSlidingTiles at (row1, col1) is the blank tile.
      *
      * @param row1 the first tile row
      * @param col1 the first tile col
@@ -93,7 +93,7 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
      * @param col2 the second tile col
      */
     void swapTiles(int row1, int col1, int row2, int col2) {
-        Tile tempTile = tiles[row1][col1];
+        TileSlidingTiles tempTile = tiles[row1][col1];
         tiles[row1][col1] = tiles[row2][col2];
         tiles[row2][col2] = tempTile;
         //update blank tile coordinates
@@ -105,18 +105,18 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
 
     @Override
     public String toString() {
-        return "Board{" +
+        return "BoardSlidingTiles{" +
                 "tiles=" + Arrays.toString(tiles) +
                 '}';
     }
 
     /**
-     * Return an iterator for this Board.
+     * Return an iterator for this BoardSlidingTiles.
      *
-     * @return iterator for this Board.
+     * @return iterator for this BoardSlidingTiles.
      */
     @NonNull
-    public Iterator<Tile> iterator() {
+    public Iterator<TileSlidingTiles> iterator() {
         return new IteratorTile(this.tiles);
     }
 
@@ -130,9 +130,9 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
 
 
     /**
-     * Iterator for Board. Iterates over the tiles on the board.
+     * Iterator for BoardSlidingTiles. Iterates over the tiles on the board.
      */
-    public class IteratorTile implements Iterator<Tile> {
+    public class IteratorTile implements Iterator<TileSlidingTiles> {
 
 
         /**
@@ -146,9 +146,9 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
         private int colIndex;
 
         /**
-         * Board of tiles over which to iterate.
+         * BoardSlidingTiles of tiles over which to iterate.
          */
-        private Tile[][] tiles;
+        private TileSlidingTiles[][] tiles;
 
         /**
          * Total number of tiles returned so far.
@@ -163,9 +163,9 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
         /**
          * A new iterator.
          *
-         * @param tileGrid a Tile grid over which to iterate.
+         * @param tileGrid a TileSlidingTiles grid over which to iterate.
          */
-        IteratorTile(Tile[][] tileGrid) {
+        IteratorTile(TileSlidingTiles[][] tileGrid) {
             this.tiles = tileGrid;
             this.rowIndex = 0;
             this.colIndex = 0;
@@ -179,8 +179,8 @@ public class Board extends Observable implements Serializable, Iterable<Tile> {
         }
 
         @Override
-        public Tile next() {
-            Tile toReturn = tiles[rowIndex][colIndex];
+        public TileSlidingTiles next() {
+            TileSlidingTiles toReturn = tiles[rowIndex][colIndex];
             if (totalSoFar < size) {
                 if (colIndex == NUM_COLS - 1) {
                     colIndex = 0;

@@ -8,14 +8,14 @@ import java.util.List;
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-class BoardManager implements Serializable {
+class BoardManagerSlidingTiles implements Serializable {
 
-    public int size = Board.NUM_COLS;
+    public int size = BoardSlidingTiles.NUM_COLS;
 
     /**
      * The board being managed.
      */
-    private Board board;
+    private BoardSlidingTiles board;
 
     /**
      * The sequence of moves made.
@@ -48,7 +48,7 @@ class BoardManager implements Serializable {
      * @param board the board
      */
 
-    BoardManager(Board board) {
+    BoardManagerSlidingTiles(BoardSlidingTiles board) {
         this.board = board;
         this.maxUndos = 3;
         this.unlimitedMoves = false;
@@ -57,14 +57,14 @@ class BoardManager implements Serializable {
     /**
      * Manage a new shuffled board with options to select number of undos.
      */
-    BoardManager(boolean unlimited, int maxUndos) {
-        List<Tile> tiles = new ArrayList<>();
-        final int numTiles = Board.NUM_ROWS * Board.NUM_COLS;
+    BoardManagerSlidingTiles(boolean unlimited, int maxUndos) {
+        List<TileSlidingTiles> tiles = new ArrayList<>();
+        final int numTiles = BoardSlidingTiles.NUM_ROWS * BoardSlidingTiles.NUM_COLS;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
-            tiles.add(new Tile(tileNum));
+            tiles.add(new TileSlidingTiles(tileNum));
         }
         Collections.shuffle(tiles);
-        this.board = new Board(tiles);
+        this.board = new BoardSlidingTiles(tiles);
         this.moves = new ArrayList<>();
         this.maxUndos = maxUndos;
         this.unlimitedMoves = unlimited;
@@ -82,14 +82,14 @@ class BoardManager implements Serializable {
     }
 
     public static void setNumMoves(int numMoves) {
-        BoardManager.numMoves = numMoves;
+        BoardManagerSlidingTiles.numMoves = numMoves;
     }
 
 
     /**
      * Return the current board.
      */
-    Board getBoard() {
+    BoardSlidingTiles getBoard() {
         return board;
     }
 
@@ -100,7 +100,7 @@ class BoardManager implements Serializable {
      */
     boolean puzzleSolved() {
         int index = 1;
-        for (Tile t : this.board) {
+        for (TileSlidingTiles t : this.board) {
             if (t.getId() != index) {
                 return false;
             }
@@ -117,14 +117,14 @@ class BoardManager implements Serializable {
      */
     boolean isValidTap(int position) {
 
-        int row = position / Board.NUM_COLS;
-        int col = position % Board.NUM_COLS;
+        int row = position / BoardSlidingTiles.NUM_COLS;
+        int col = position % BoardSlidingTiles.NUM_COLS;
         int blankId = board.numTiles();
         // Are any of the 4 the blank tile?
-        Tile above = row == 0 ? null : board.getTile(row - 1, col);
-        Tile below = row == Board.NUM_ROWS - 1 ? null : board.getTile(row + 1, col);
-        Tile left = col == 0 ? null : board.getTile(row, col - 1);
-        Tile right = col == Board.NUM_COLS - 1 ? null : board.getTile(row, col + 1);
+        TileSlidingTiles above = row == 0 ? null : board.getTile(row - 1, col);
+        TileSlidingTiles below = row == BoardSlidingTiles.NUM_ROWS - 1 ? null : board.getTile(row + 1, col);
+        TileSlidingTiles left = col == 0 ? null : board.getTile(row, col - 1);
+        TileSlidingTiles right = col == BoardSlidingTiles.NUM_COLS - 1 ? null : board.getTile(row, col + 1);
         return (below != null && below.getId() == blankId)
                 || (above != null && above.getId() == blankId)
                 || (left != null && left.getId() == blankId)
@@ -138,8 +138,8 @@ class BoardManager implements Serializable {
      */
     void touchMove(int position) {
 
-        int row = position / Board.NUM_ROWS;
-        int col = position % Board.NUM_COLS;
+        int row = position / BoardSlidingTiles.NUM_ROWS;
+        int col = position % BoardSlidingTiles.NUM_COLS;
         if (this.isValidTap(position)) {
             //add the position of the blank tile for undo move
             this.moves.add(this.board.getBlankRow());

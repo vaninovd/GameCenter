@@ -10,7 +10,7 @@ import java.util.List;
  */
 class BoardManagerFlipCard implements Serializable {
 
-    public int size = Board.NUM_COLS;
+    public int size = BoardSlidingTiles.NUM_COLS;
 
     /**
      * The board being managed.
@@ -81,8 +81,8 @@ class BoardManagerFlipCard implements Serializable {
      * @return boolean whether the tap is valid
      */
     public boolean isValidTap(int position) {
-        int row = position / Board.NUM_ROWS;
-        int col = position % Board.NUM_COLS;
+        int row = position / BoardSlidingTiles.NUM_ROWS;
+        int col = position % BoardSlidingTiles.NUM_COLS;
         TileFlipCard clickedTile = this.board.getTileFlipCard(row, col);
         return !clickedTile.isUp();
     }
@@ -94,8 +94,8 @@ class BoardManagerFlipCard implements Serializable {
      */
     void touchMove(int position) {
         if (isValidTap(position)) {
-            int row = position / Board.NUM_ROWS;
-            int col = position % Board.NUM_COLS;
+            int row = position / BoardSlidingTiles.NUM_ROWS;
+            int col = position % BoardSlidingTiles.NUM_COLS;
             TileFlipCard clickedTile = this.board.getTileFlipCard(row, col);
             //if temp tile 1 is not up, i.e. if no tile was clicked, flip the tile clicked
             if (tempTile1 == null) {

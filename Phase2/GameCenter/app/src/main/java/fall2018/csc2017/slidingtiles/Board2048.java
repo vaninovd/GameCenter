@@ -15,7 +15,7 @@ import java.util.Random;
 public class Board2048 extends Observable implements Serializable, Iterable<Tile2048> {
 
     /**
-     * The number of rows in Board.
+     * The number of rows in BoardSlidingTiles.
      */
     static int NUM_ROWS = 4;
 
@@ -431,9 +431,9 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
     }
 
     /**
-     * Return an iterator for this Board.
+     * Return an iterator for this BoardSlidingTiles.
      *
-     * @return iterator for this Board.
+     * @return iterator for this BoardSlidingTiles.
      */
     @NonNull
     public Iterator<Tile2048> iterator() {
@@ -441,7 +441,7 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
     }
 
     /**
-     * Iterator for Board. Iterates over the tiles on the board in row major order.
+     * Iterator for BoardSlidingTiles. Iterates over the tiles on the board in row major order.
      */
     public class TileIterator implements Iterator<Tile2048> {
 

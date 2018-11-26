@@ -5,9 +5,9 @@ import android.support.annotation.NonNull;
 import java.io.Serializable;
 
 /**
- * A Tile in a sliding tiles puzzle.
+ * A TileSlidingTiles in a sliding tiles puzzle.
  */
-public class Tile implements Comparable<Tile>, Serializable {
+public class TileSlidingTiles implements Comparable<TileSlidingTiles>, Serializable {
 
     /**
      * The background id to find the tile image.
@@ -38,12 +38,12 @@ public class Tile implements Comparable<Tile>, Serializable {
     }
 
     /**
-     * A Tile with id and background. The background may not have a corresponding image.
+     * A TileSlidingTiles with id and background. The background may not have a corresponding image.
      *
      * @param id         the id
      * @param background the background
      */
-    Tile(int id, int background) {
+    TileSlidingTiles(int id, int background) {
         this.id = id;
         this.background = background;
     }
@@ -53,12 +53,12 @@ public class Tile implements Comparable<Tile>, Serializable {
      *
      * @param backgroundId
      */
-    Tile(int backgroundId) {
+    TileSlidingTiles(int backgroundId) {
         id = backgroundId + 1;
-        if (Board.NUM_COLS == 3) {
+        if (BoardSlidingTiles.NUM_COLS == 3) {
             tile3x3(backgroundId);
         }
-        else if (Board.NUM_COLS == 4) {
+        else if (BoardSlidingTiles.NUM_COLS == 4) {
             tile4x4(backgroundId);
         }
         else {
@@ -108,7 +108,7 @@ public class Tile implements Comparable<Tile>, Serializable {
     }
 
     @Override
-    public int compareTo(@NonNull Tile o) {
+    public int compareTo(@NonNull TileSlidingTiles o) {
         return o.id - this.id;
     }
 }

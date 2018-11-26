@@ -49,10 +49,10 @@ public class SlidingTilesSettingsActivity extends StartingActivity {
      * Switch to the GameActivity view to play the game.
      */
     private void switchToGame(boolean unlimited, int numUndo, int size) {
-        Board.NUM_COLS = size;
-        Board.NUM_ROWS = size;
-        BoardManager.resetNumMoves();
-        boardManager = new BoardManager(unlimited, numUndo);
+        BoardSlidingTiles.NUM_COLS = size;
+        BoardSlidingTiles.NUM_ROWS = size;
+        BoardManagerSlidingTiles.resetNumMoves();
+        boardManager = new BoardManagerSlidingTiles(unlimited, numUndo);
         Intent tmp = new Intent(this, GameActivity.class);
         saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
         startActivity(tmp);

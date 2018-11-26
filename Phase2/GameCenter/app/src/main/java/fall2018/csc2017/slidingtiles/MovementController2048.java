@@ -11,7 +11,7 @@ public class MovementController2048 {
     }
 
     /**
-     * Set the BoardManager to the current board manager of the game.
+     * Set the BoardManagerSlidingTiles to the current board manager of the game.
      */
     public void setBoardManager(BoardManager2048 boardManager) {
         this.boardManager = boardManager;
@@ -22,13 +22,13 @@ public class MovementController2048 {
 //     */
 //    public void processTapMovement(Context context, int position, boolean display) {
 //        if (boardManager.isValidTap(position)) {
-//            BoardManager.setNumMoves(getNumMoves() + 1);
+//            BoardManagerSlidingTiles.setNumMoves(getNumMoves() + 1);
 //            boardManager.touchMove(position);
 //            if (boardManager.puzzleSolved()) {
 //                Toast.makeText(context, "YOU WIN! Check out the LEADERBOARD!", Toast.LENGTH_SHORT).show();
 //                String username = UserManager.currentUser;
 //                User curruser = LoginActivity.users.getUser(username);
-//                int score = BoardManager.getNumMoves();
+//                int score = BoardManagerSlidingTiles.getNumMoves();
 //                curruser.addScore(StartingActivity.name, score);
 //            }
 //        } else {

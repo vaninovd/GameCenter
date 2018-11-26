@@ -23,7 +23,7 @@ import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
 
-import static fall2018.csc2017.slidingtiles.BoardManager.*;
+import static fall2018.csc2017.slidingtiles.BoardManagerSlidingTiles.*;
 
 /**
  * The game activity.
@@ -33,7 +33,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     /**
      * The board manager.
      */
-    private BoardManager boardManager;
+    private BoardManagerSlidingTiles boardManager;
 
     /**
      * The buttons to display.
@@ -81,7 +81,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
         // Add View to activity
         gridView = findViewById(R.id.grid);
-        gridView.setNumColumns(Board.NUM_COLS);
+        gridView.setNumColumns(BoardSlidingTiles.NUM_COLS);
         gridView.setBoardManager(boardManager);
         boardManager.getBoard().addObserver(this);
         // Observer sets up desired dimensions as well as calls our display function
@@ -94,8 +94,8 @@ public class GameActivity extends AppCompatActivity implements Observer {
                         int displayWidth = gridView.getMeasuredWidth();
                         int displayHeight = gridView.getMeasuredHeight();
 
-                        columnWidth = displayWidth / Board.NUM_COLS;
-                        columnHeight = displayHeight / Board.NUM_ROWS;
+                        columnWidth = displayWidth / BoardSlidingTiles.NUM_COLS;
+                        columnHeight = displayHeight / BoardSlidingTiles.NUM_ROWS;
 
                         display();
                     }
@@ -119,10 +119,10 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        Board board = boardManager.getBoard();
+        BoardSlidingTiles board = boardManager.getBoard();
         tileButtons = new ArrayList<>();
-        for (int row = 0; row != Board.NUM_ROWS; row++) {
-            for (int col = 0; col != Board.NUM_COLS; col++) {
+        for (int row = 0; row != BoardSlidingTiles.NUM_ROWS; row++) {
+            for (int col = 0; col != BoardSlidingTiles.NUM_COLS; col++) {
                 Button tmp = new Button(context);
                 tmp.setBackgroundResource(board.getTile(row, col).getBackground());
                 this.tileButtons.add(tmp);
@@ -146,11 +146,11 @@ public class GameActivity extends AppCompatActivity implements Observer {
      * Update the backgrounds on the buttons to match the tiles.
      */
     private void updateTileButtons() {
-        Board board = boardManager.getBoard();
+        BoardSlidingTiles board = boardManager.getBoard();
         int nextPos = 0;
         for (Button b : tileButtons) {
-            int row = nextPos / Board.NUM_ROWS;
-            int col = nextPos % Board.NUM_COLS;
+            int row = nextPos / BoardSlidingTiles.NUM_ROWS;
+            int col = nextPos % BoardSlidingTiles.NUM_COLS;
             b.setBackgroundResource(board.getTile(row, col).getBackground());
             nextPos++;
         }
@@ -176,7 +176,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                boardManager = (BoardManager) input.readObject();
+                boardManager = (BoardManagerSlidingTiles) input.readObject();
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {

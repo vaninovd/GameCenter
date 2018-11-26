@@ -16,7 +16,7 @@ import java.util.List;
 public class BoardFlipCard extends Observable implements Serializable, Iterable<TileFlipCard> {
 
     /**
-     * The number of rows in Board.
+     * The number of rows in BoardSlidingTiles.
      */
     static int NUM_ROWS;
 
@@ -39,8 +39,8 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
     BoardFlipCard(List<TileFlipCard> tiles) {
         Iterator<TileFlipCard> tIterator = tiles.iterator();
 
-        for (int row = 0; row != Board.NUM_ROWS; row++) {
-            for (int col = 0; col != Board.NUM_COLS; col++) {
+        for (int row = 0; row != BoardSlidingTiles.NUM_ROWS; row++) {
+            for (int col = 0; col != BoardSlidingTiles.NUM_COLS; col++) {
                 TileFlipCard tile = tIterator.next();
                 this.tiles[row][col] = tile;
             }
@@ -70,15 +70,15 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
 
     @Override
     public String toString() {
-        return "Board{" +
+        return "BoardSlidingTiles{" +
                 "tiles=" + Arrays.toString(tiles) +
                 '}';
     }
 
     /**
-     * Return an iterator for this Board.
+     * Return an iterator for this BoardSlidingTiles.
      *
-     * @return iterator for this Board.
+     * @return iterator for this BoardSlidingTiles.
      */
     @NonNull
     public Iterator<TileFlipCard> iterator() {
@@ -86,7 +86,7 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
     }
 
     /**
-     * Iterator for Board. Iterates over the tiles on the board.
+     * Iterator for BoardSlidingTiles. Iterates over the tiles on the board.
      */
     public class IteratorTile implements Iterator<TileFlipCard> {
 
@@ -102,7 +102,7 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
         private int colIndex;
 
         /**
-         * Board of tiles over which to iterate.
+         * BoardSlidingTiles of tiles over which to iterate.
          */
         private TileFlipCard[][] tiles;
 
@@ -119,7 +119,7 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
         /**
          * A new iterator.
          *
-         * @param tileGrid a Tile grid over which to iterate.
+         * @param tileGrid a TileSlidingTiles grid over which to iterate.
          */
         IteratorTile(TileFlipCard[][] tileGrid) {
             this.tiles = tileGrid;

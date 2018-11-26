@@ -32,7 +32,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * The board manager.
      */
-    protected BoardManager boardManager;
+    protected BoardManagerSlidingTiles boardManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,7 +164,7 @@ public class StartingActivity extends AppCompatActivity {
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                boardManager = (BoardManager) input.readObject();
+                boardManager = (BoardManagerSlidingTiles) input.readObject();
                 if (boardManager != null) {
                     setBoardSize(boardManager.getBoard().tiles.length);
                 }
@@ -197,8 +197,8 @@ public class StartingActivity extends AppCompatActivity {
     }
 
     public void setBoardSize(int size) {
-        Board.NUM_ROWS = size;
-        Board.NUM_COLS = size;
+        BoardSlidingTiles.NUM_ROWS = size;
+        BoardSlidingTiles.NUM_COLS = size;
     }
 
     public void makeNoLoadedGameToast() {
