@@ -12,32 +12,32 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class BoardAndTileTest {
+public class BoardSlidingTilesAndTileSlidingTilesTest {
 
     /** The board manager for testing. */
-    BoardManager boardManager;
+    BoardManagerSlidingTiles boardManager;
 
     /**
      * Make a set of tiles that are in order.
      * @return a set of tiles that are in order
      */
-    private List<Tile> makeTiles() {
-        List<Tile> tiles = new ArrayList<>();
-        final int numTiles = Board.NUM_ROWS * Board.NUM_COLS;
+    private List<TileSlidingTiles> makeTiles() {
+        List<TileSlidingTiles> tiles = new ArrayList<>();
+        final int numTiles = BoardSlidingTiles.NUM_ROWS * BoardSlidingTiles.NUM_COLS;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
-            tiles.add(new Tile(tileNum + 1, tileNum));
+            tiles.add(new TileSlidingTiles(tileNum + 1, tileNum));
         }
 
         return tiles;
     }
 
     /**
-     * Make a solved Board.
+     * Make a solved BoardSlidingTiles.
      */
     private void setUpCorrect() {
-        List<Tile> tiles = makeTiles();
-        Board board = new Board(tiles);
-        boardManager = new BoardManager(board);
+        List<TileSlidingTiles> tiles = makeTiles();
+        BoardSlidingTiles board = new BoardSlidingTiles(tiles);
+        boardManager = new BoardManagerSlidingTiles(board);
     }
 
     /**
