@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/activity_main_pic">
 
-    <fall2018.csc2017.GestureDetectGridView2048 xmlns:android="http://schemas.android.com/apk/res/android"
+    <fall2018.csc2017.slidingtiles.GestureDetectGridView2048 xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/grid"
@@ -20,7 +20,7 @@
         android:layout_marginTop="138dp"
         android:layout_marginBottom="120dp"
         android:visibility="visible"
-        tools:context="com.example.shume.game2048.GameActivity2048" />
+        tools:context="fall2018.csc2017.slidingtiles.GameActivity2048" />
 
     <TextView
         android:id="@+id/NumMoves2048"
