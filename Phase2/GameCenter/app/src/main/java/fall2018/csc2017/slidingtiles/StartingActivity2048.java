@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+//TODO: JAVADOCS AND SWITCH TO SCOREBOARD
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -23,12 +24,12 @@ public class StartingActivity2048 extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static String SAVE_FILENAME = "save.ser";
+    public static String SAVE_FILENAME = LoginActivity.users.getCurrentUser() + ".ser";
 
     /**
      * A temporary save file.
      */
-    public static String TEMP_SAVE_FILENAME = "save_temp.ser";
+    public static String TEMP_SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "_temp.ser";
     /**
      * The board manager.
      */
@@ -130,15 +131,6 @@ public class StartingActivity2048 extends AppCompatActivity {
         saveToFile(TEMP_SAVE_FILENAME);
         startActivity(tmp);
     }
-
-
-//    /**
-//     * Switches to the settings select activity.
-//     */
-//    private void switchToSettings() {
-//        Intent tmp = new Intent(this, SlidingTilesSettingsActivity.class);
-//        startActivity(tmp);
-//    }
 
     /**
      * Load the board manager from fileName.

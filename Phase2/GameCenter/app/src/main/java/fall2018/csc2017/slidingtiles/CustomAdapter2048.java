@@ -20,6 +20,7 @@ public class CustomAdapter2048 extends BaseAdapter {
     private ArrayList<Button> mButtons = null;
     private int mColumnWidth, mColumnHeight;
 
+    //TODO: JAVADOCS
     public CustomAdapter2048(ArrayList<Button> buttons, int columnWidth, int columnHeight) {
         mButtons = buttons;
         mColumnWidth = columnWidth;

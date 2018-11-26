@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.Random;
+// TODO: JAVADOCS
 
 /**
  * The 2048 board.
@@ -71,15 +72,6 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
      */
     public static void resetNumMoves() {
         score = 0;
-    }
-
-    /**
-     * Return the number of tiles on the board.
-     *
-     * @return the number of tiles on the board
-     */
-    int numTiles() {
-        return NUM_COLS * NUM_ROWS;
     }
 
     /**
@@ -329,32 +321,32 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
         return empty;
     }
 
-    /**
-     * Checks to see if a merge action was made from the previous to current board state
-     * @return boolean
-     */
-    public boolean madeMerge(Tile2048[][] temp1, Tile2048[][] tiles) {
-        int t1Count = 0;
-        int tCount = 0;
-        for (int row = 0; row < Board2048.NUM_ROWS; row++) {
-            for (int col = 0; col < Board2048.NUM_COLS; col++) {
-                // if it is not an empty tile
-                if (temp1[row][col].getExponent() != 0) {
-                    t1Count++;
-                }
-                if (tiles[row][col].getExponent() != 0) {
-                    tCount++;
-                }
-            }
-        }
-        return isSpawnable(temp1, tiles) && t1Count == tCount;
-    }
+//    /**
+//     * Checks to see if a merge action was made from the previous to current board state
+//     * @return boolean
+//     */
+//    public boolean madeMerge(Tile2048[][] temp1, Tile2048[][] tiles) {
+//        int t1Count = 0;
+//        int tCount = 0;
+//        for (int row = 0; row < Board2048.NUM_ROWS; row++) {
+//            for (int col = 0; col < Board2048.NUM_COLS; col++) {
+//                // if it is not an empty tile
+//                if (temp1[row][col].getExponent() != 0) {
+//                    t1Count++;
+//                }
+//                if (tiles[row][col].getExponent() != 0) {
+//                    tCount++;
+//                }
+//            }
+//        }
+//        return isSpawnable(temp1, tiles) && t1Count == tCount;
+//    }
 
     /**
      * Checks if there are any holes in the board
      * @return boolean
      */
-    public boolean hasHoles() {
+    private boolean hasHoles() {
         boolean flag = false;
         outer:
         for (int row = 0; row != Board2048.NUM_ROWS; row++) {
@@ -414,7 +406,6 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
         return stuck;
     }
 
-    // TODO: for debugging purposes, change it back to original string method once done
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder();
@@ -422,7 +413,7 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
         for (int row = 0; row < 4; row ++) {
             ret.append("[");
             for (int col = 0; col < 4; col ++) {
-                ret.append(tiles[row][col].getExponent());
+                ret.append(Math.pow(2, tiles[row][col].getExponent()));
             }
             ret.append("]");
         }

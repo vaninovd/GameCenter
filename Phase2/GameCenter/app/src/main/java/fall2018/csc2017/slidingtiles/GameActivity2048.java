@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
+//TODO: JAVADOCS AND AUTOSAVE
 
 /**
  * The game activity.
@@ -126,18 +127,6 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
             }
         }
     }
-
-//    /**
-//     * Process an undo tap when there are no more undos left.
-//     * @param view the current view
-//     */
-//    public void undoButton(View view) {
-//        try {
-//            this.boardManager.undoMove();
-//        } catch (IndexOutOfBoundsException undoEx) {
-//            Toast.makeText(this, "No more moves to undo", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
     /**
      * Update the backgrounds on the buttons to match the tiles.
