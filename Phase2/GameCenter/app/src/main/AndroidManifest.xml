@@ -21,6 +21,11 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".StartingActivity2048">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity android:name=".SignUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,9 +52,6 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2048" />
-        <activity android:name=".Matrix2048" />
-        <activity android:name=".Scorebox2048" />
         <activity android:name=".GamesActivity"></activity>
     </application>
 
