@@ -24,4 +24,5 @@
     <string name="select_the_size_of_the_board">Select the size of the board:</string>
     <string name="enter_the_number_of_undo_s_available_by_default_3">Enter the number of undos available (by default 3):</string>
     <string name="scoreboard">Scoreboard</string>
+    <string name="score_count">Score Count</string>
 </resources>
