@@ -113,11 +113,20 @@ public class GestureDetectGridView2048 extends GridView {
         return super.onInterceptTouchEvent(ev);
     }
 
+    /**
+     * To handle a swipe event
+     * @param ev
+     * @return boolean
+     */
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         return gDetector.onTouchEvent(ev);
     }
 
+    /**
+     * Sets the board manager to current board manager.
+     * @param boardManager the boardmanager currently
+     */
     public void setBoardManager(BoardManager2048 boardManager) {
         this.boardManager = boardManager;
         mController.setBoardManager(boardManager);
