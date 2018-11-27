@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-//TODO: JAVADOCS AND SWITCH TO SCOREBOARD
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -98,6 +97,9 @@ public class StartingActivity2048 extends AppCompatActivity {
         });
     }
 
+    /**
+     * Function to switch to scoreboard view when LEADERBOARD is clicked
+     */
     private void switchToScoreboard() {
         Intent tmp = new Intent(this, MainListView.class);
         startActivity(tmp);
@@ -193,11 +195,18 @@ public class StartingActivity2048 extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sets the size of the 2048 board.
+     * @param size size of the board (square)
+     */
     public void setBoardSize(int size) {
         Board2048.NUM_ROWS = size;
         Board2048.NUM_COLS = size;
     }
 
+    /**
+     * Indicate when there is no game saved to load
+     */
     public void makeNoLoadedGameToast() {
         Toast.makeText(this, "There is no game to load!", Toast.LENGTH_SHORT).show();
     }

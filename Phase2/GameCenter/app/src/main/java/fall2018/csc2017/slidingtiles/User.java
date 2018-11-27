@@ -92,9 +92,9 @@ public class User implements Comparable<User>, Serializable {
      */
     @Override
     public int compareTo(@NonNull User secondUser) {
-        if (this.getScore(StartingActivity.name) < secondUser.getScore(StartingActivity.name)){
+        if (this.getScore(GamesActivity.currGame) < secondUser.getScore(GamesActivity.currGame)){
             return 1;
-        } else if (this.getScore(StartingActivity.name) > secondUser.getScore(StartingActivity.name)){
+        } else if (this.getScore(GamesActivity.currGame) > secondUser.getScore(GamesActivity.currGame)){
             return -1;
         }
         return 0;
