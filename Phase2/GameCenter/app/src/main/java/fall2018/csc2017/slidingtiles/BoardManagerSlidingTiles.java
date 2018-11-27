@@ -73,6 +73,30 @@ class BoardManagerSlidingTiles implements Serializable {
     }
 
     /**
+     * Return the solvable order of the tiles for a grid of odd width.
+     * Source: http://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
+     *
+     * @param tiles the tiles
+     */
+    private void checkSolvableForOddWidth(List<TileSlidingTiles> tiles) {
+        while (!evenNumOfInversions(tiles)) {
+            Collections.shuffle(tiles);
+        }
+    }
+
+    /**
+     * Return the solvable order of the tiles for a grid of even width.
+     * Source: http://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
+     *
+     * @param tiles the tiles
+     */
+    private void checkSolvableForEvenWidth(List<TileSlidingTiles> tiles) {
+        while (!checkSolvableForEvenWidthHelper(tiles)) {
+            Collections.shuffle(tiles);
+        }
+    }
+
+    /**
      * Return true if the number of inversions is even, return false otherwise.
      *
      * @param tiles the tiles
