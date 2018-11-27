@@ -66,6 +66,11 @@ class BoardManagerSlidingTiles implements Serializable {
             tiles.add(new TileSlidingTiles(tileNum));
         }
         Collections.shuffle(tiles);
+        if (BoardSlidingTiles.NUM_COLS % 2 == 1) {
+            checkSolvableForOddWidth(tiles);
+        } else {
+            checkSolvableForEvenWidth(tiles);
+        }
         this.board = new BoardSlidingTiles(tiles);
         this.moves = new ArrayList<>();
         this.maxUndos = maxUndos;
@@ -115,6 +120,20 @@ class BoardManagerSlidingTiles implements Serializable {
             }
         }
         return inversions % 2 != 1;
+    }
+
+    /**
+     * Helper function for the checkSolvableForEvenWidth method to check if the
+     * invariant (#inversions even) == (blank on odd row) holds for the game to be solved.
+     * #taken from the http://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
+     *
+     * @param tiles the tiles
+     * @return boolean
+     */
+    private boolean checkSolvableForEvenWidthHelper(List<TileSlidingTiles> tiles) {
+        boolean evenInversion = evenNumOfInversions(tiles);
+        boolean blankOddRow = blankOnOddRow(tiles);
+        return evenInversion == blankOddRow;
     }
 
     /**
