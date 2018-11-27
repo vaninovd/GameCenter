@@ -3,6 +3,7 @@ package fall2018.csc2017.slidingtiles;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_YES);
         super.onCreate(savedInstanceState);
         loadFromFile(USER_SAVE);
         if (users == null) {
@@ -107,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
      * Switches to Sliding Tiles Starting Activity
      */
     private void switchToSlidingTiles() {
-        Intent tmp = new Intent(this, StartingActivity.class);
+        Intent tmp = new Intent(this, StartingActivitySlidingTiles.class);
         startActivity(tmp);
     }
 
@@ -166,7 +169,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param filename The filename we wish to change to.
      */
     public void setSaveFilename(String filename) {
-        StartingActivity.SAVE_FILENAME = filename + ".ser";
-        StartingActivity.TEMP_SAVE_FILENAME = filename + "_temp.ser";
+        StartingActivitySlidingTiles.SAVE_FILENAME = filename + ".ser";
+        StartingActivitySlidingTiles.TEMP_SAVE_FILENAME = filename + "_temp.ser";
     }
 }

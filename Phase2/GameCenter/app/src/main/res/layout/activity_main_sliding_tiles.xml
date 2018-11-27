@@ -19,7 +19,7 @@
         android:layout_marginTop="138dp"
         android:layout_marginBottom="120dp"
         android:visibility="visible"
-        tools:context="fall2018.csc2017.slidingtiles.GameActivity" />
+        tools:context="fall2018.csc2017.slidingtiles.GameActivitySlidingTiles" />
 
     <Button
         android:id="@+id/undoButton"

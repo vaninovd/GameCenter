@@ -75,7 +75,7 @@ public class GameActivityFlipCard extends AppCompatActivity implements Observer 
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         super.onCreate(savedInstanceState);
-        loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
+        loadFromFile(StartingActivitySlidingTiles.TEMP_SAVE_FILENAME);
         createTileButtons(this);
         setContentView(R.layout.activity_main_sliding_tiles);
 
@@ -162,7 +162,7 @@ public class GameActivityFlipCard extends AppCompatActivity implements Observer 
     @Override
     protected void onPause() {
         super.onPause();
-        saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+        saveToFile(StartingActivitySlidingTiles.TEMP_SAVE_FILENAME);
     }
 
     /**
@@ -218,7 +218,7 @@ public class GameActivityFlipCard extends AppCompatActivity implements Observer 
 
     @Override
     public void update(Observable o, Object arg) {
-        autoSave(StartingActivity.SAVE_FILENAME);
+        autoSave(StartingActivitySlidingTiles.SAVE_FILENAME);
         display();
     }
 }

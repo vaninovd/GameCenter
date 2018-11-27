@@ -32,7 +32,7 @@ public class MovementController {
                 String username = UserManager.currentUser;
                 User curruser = LoginActivity.users.getUser(username);
                 int score = BoardManagerSlidingTiles.getNumMoves();
-                curruser.addScore(StartingActivity.name, score);
+                curruser.addScore(StartingActivitySlidingTiles.name, score);
             }
         } else {
             Toast.makeText(context, "Invalid Tap", Toast.LENGTH_SHORT).show();

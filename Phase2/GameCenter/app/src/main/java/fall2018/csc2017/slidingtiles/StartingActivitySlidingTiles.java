@@ -17,7 +17,7 @@ import java.io.ObjectOutputStream;
 /**
  * The initial activity for the sliding puzzle tile game.
  */
-public class StartingActivity extends AppCompatActivity {
+public class StartingActivitySlidingTiles extends AppCompatActivity {
 
     public static final String name = "SlidingTiles";
     /**
@@ -137,11 +137,11 @@ public class StartingActivity extends AppCompatActivity {
     }
 
     /**
-     * Switch to the GameActivity view to play the game.
+     * Switch to the GameActivitySlidingTiles view to play the game.
      */
     private void switchToGame() {
-        Intent tmp = new Intent(this, GameActivity.class);
-        saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+        Intent tmp = new Intent(this, GameActivitySlidingTiles.class);
+        saveToFile(StartingActivitySlidingTiles.TEMP_SAVE_FILENAME);
         startActivity(tmp);
     }
 
