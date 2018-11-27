@@ -21,7 +21,7 @@ public class MovementController2048 {
         String username = UserManager.currentUser;
         User curruser = LoginActivity.users.getUser(username);
         int score = Board2048.getScore();
-        curruser.addScore(StartingActivity.name, score);
+        curruser.addScore(StartingActivity2048.name, score);
     }
 
     /**
