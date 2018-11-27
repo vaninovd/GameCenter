@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
      * Switches to Sliding Tiles Starting Activity
      */
     private void switchToSlidingTiles() {
-        Intent tmp = new Intent(this, StartingActivity.class);
+        Intent tmp = new Intent(this, StartingActivitySlidingTiles.class);
         startActivity(tmp);
     }
 
@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param filename The filename we wish to change to.
      */
     public void setSaveFilename(String filename) {
-        StartingActivity.SAVE_FILENAME = filename + ".ser";
-        StartingActivity.TEMP_SAVE_FILENAME = filename + "_temp.ser";
+        StartingActivitySlidingTiles.SAVE_FILENAME = filename + ".ser";
+        StartingActivitySlidingTiles.TEMP_SAVE_FILENAME = filename + "_temp.ser";
     }
 }

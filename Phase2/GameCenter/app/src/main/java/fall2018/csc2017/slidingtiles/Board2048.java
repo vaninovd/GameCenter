@@ -39,6 +39,8 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
      */
     public Tile2048[][] tiles = new Tile2048[NUM_ROWS][NUM_COLS];
 
+
+
     /**
      * A new board of tiles in row-major order.
      */

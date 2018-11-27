@@ -15,46 +15,46 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.GridView;
 
-public class GestureDetectGridView extends GridView {
+public class GestureDetectGridViewSlidingTiles extends GridView {
     public static final int SWIPE_MIN_DISTANCE = 100;
     public static final int SWIPE_MAX_OFF_PATH = 100;
     public static final int SWIPE_THRESHOLD_VELOCITY = 100;
     private GestureDetector gDetector;
-    private MovementController mController;
+    private MovementControllerSlidingTiles mController;
     private boolean mFlingConfirmed = false;
     private float mTouchX;
     private float mTouchY;
     private BoardManagerSlidingTiles boardManager;
 
-    public GestureDetectGridView(Context context) {
+    public GestureDetectGridViewSlidingTiles(Context context) {
         super(context);
         init(context);
     }
 
-    public GestureDetectGridView(Context context, AttributeSet attrs) {
+    public GestureDetectGridViewSlidingTiles(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public GestureDetectGridView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public GestureDetectGridViewSlidingTiles(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP) // API 21
-    public GestureDetectGridView(Context context, AttributeSet attrs, int defStyleAttr,
-                                 int defStyleRes) {
+    public GestureDetectGridViewSlidingTiles(Context context, AttributeSet attrs, int defStyleAttr,
+                                             int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
     }
 
     private void init(final Context context) {
-        mController = new MovementController();
+        mController = new MovementControllerSlidingTiles();
         gDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
 
             @Override
             public boolean onSingleTapConfirmed(MotionEvent event) {
-                int position = GestureDetectGridView.this.pointToPosition
+                int position = GestureDetectGridViewSlidingTiles.this.pointToPosition
                         (Math.round(event.getX()), Math.round(event.getY()));
 
                 mController.processTapMovement(context, position, true);

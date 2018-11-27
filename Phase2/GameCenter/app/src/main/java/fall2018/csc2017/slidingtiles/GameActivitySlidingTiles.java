@@ -28,7 +28,7 @@ import static fall2018.csc2017.slidingtiles.BoardManagerSlidingTiles.*;
 /**
  * The game activity.
  */
-public class GameActivity extends AppCompatActivity implements Observer {
+public class GameActivitySlidingTiles extends AppCompatActivity implements Observer {
 
     /**
      * The board manager.
@@ -49,7 +49,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     public static final int RIGHT = 4;
 
     // Grid View and calculated column height and width based on device size
-    private GestureDetectGridView gridView;
+    private GestureDetectGridViewSlidingTiles gridView;
     private static int columnWidth, columnHeight;
 
     /**
@@ -63,7 +63,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
         final TextView txtValue = findViewById(R.id.NumMoves);
         txtValue.setText(Integer.toString(getNumMoves()));
-        gridView.setAdapter(new CustomAdapter(tileButtons, columnWidth, columnHeight));
+        gridView.setAdapter(new CustomAdapterSlidingTiles(tileButtons, columnWidth, columnHeight));
     }
 
     @Override
@@ -75,7 +75,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         super.onCreate(savedInstanceState);
-        loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
+        loadFromFile(StartingActivitySlidingTiles.TEMP_SAVE_FILENAME);
         createTileButtons(this);
         setContentView(R.layout.activity_main_sliding_tiles);
 
@@ -162,7 +162,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     @Override
     protected void onPause() {
         super.onPause();
-        saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+        saveToFile(StartingActivitySlidingTiles.TEMP_SAVE_FILENAME);
     }
 
     /**
@@ -218,7 +218,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        autoSave(StartingActivity.SAVE_FILENAME);
+        autoSave(StartingActivitySlidingTiles.SAVE_FILENAME);
         display();
     }
 }

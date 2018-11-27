@@ -31,12 +31,12 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameActivity">
+        <activity android:name=".GameActivitySlidingTiles">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".StartingActivity">
+        <activity android:name=".StartingActivitySlidingTiles">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

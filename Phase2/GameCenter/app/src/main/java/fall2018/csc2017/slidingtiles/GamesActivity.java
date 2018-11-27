@@ -67,7 +67,7 @@ public class GamesActivity extends AppCompatActivity {
      * Switches to Sliding Tiles Starting Activity
      */
     private void switchToSlidingTiles() {
-        Intent tmp = new Intent(this, StartingActivity.class);
+        Intent tmp = new Intent(this, StartingActivitySlidingTiles.class);
         startActivity(tmp);
     }
 
