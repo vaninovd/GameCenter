@@ -75,7 +75,7 @@ public class ScoreboardAdapter extends BaseAdapter {
 
         final User m = usersList.get(position);
         holder.name.setText(m.getName());
-        holder.score.setText(Integer.toString(m.getScore(StartingActivity.name)));
+        holder.score.setText(Integer.toString(m.getScore(GamesActivity.currGame)));
 
         return scoreView;
     }
