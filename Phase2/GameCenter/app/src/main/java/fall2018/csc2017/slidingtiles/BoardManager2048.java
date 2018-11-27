@@ -1,7 +1,7 @@
 package fall2018.csc2017.slidingtiles;
 
 import java.io.Serializable;
-//TODO: JAVADOCS
+
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
@@ -14,6 +14,9 @@ class BoardManager2048 implements Serializable {
      */
     private Board2048 board;
 
+    /**
+     * Constructor for BoardManager class
+     */
     BoardManager2048() {
         this.board = new Board2048();
     }
@@ -45,10 +48,18 @@ class BoardManager2048 implements Serializable {
         return won;
     }
 
+    /**
+     * Indicates whether the current state of the game is over
+     * @return boolean
+     */
     public boolean gameOver() {
         return this.board.isStuck();
     }
 
+    /**
+     * Executes the appropriate move to swiping motion detected
+     * @param direction direction of swipe
+     */
     public void makeMove(int direction){
         switch(direction) {
             case 1:
