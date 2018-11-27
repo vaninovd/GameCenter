@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/activity_main_pic">
+    android:background="#1D1B4B">
 
     <fall2018.csc2017.slidingtiles.GestureDetectGridView2048 xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -30,6 +30,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
         android:text="@string/score_count"
+        android:textColor="#ffffff"
         android:textSize="52sp" />
 
     <!--<TextView-->
