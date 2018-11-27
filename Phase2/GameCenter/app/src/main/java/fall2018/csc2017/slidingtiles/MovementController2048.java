@@ -33,11 +33,11 @@ public class MovementController2048 {
         if (!boardManager.gameOver()) {
             boardManager.makeMove(direction);
             if (boardManager.gameWon()) {
-                Toast.makeText(context, "YOU WIN! Check out the LEADERBOARD!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "YOU GOT 2048! Check the LEADERBOARD!", Toast.LENGTH_SHORT).show();
                 recordScore();
             }
         } else {
-            Toast.makeText(context, "GAME OVER!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "NO MORE MOVES! Check the LEADERBOARD!", Toast.LENGTH_SHORT).show();
             recordScore();
         }
     }
