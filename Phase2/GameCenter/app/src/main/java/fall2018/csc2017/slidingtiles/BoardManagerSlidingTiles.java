@@ -73,6 +73,27 @@ class BoardManagerSlidingTiles implements Serializable {
     }
 
     /**
+     * Return true if the number of inversions is even, return false otherwise.
+     *
+     * @param tiles the tiles
+     * @return boolean
+     */
+    private boolean evenNumOfInversions(List<TileSlidingTiles> tiles) {
+        int inversions = 0;
+        for (int i = 0; i < tiles.size(); i++) {
+            for (int j = i + 1; j < tiles.size(); j++) {
+                if (tiles.get(i).getBackground() != R.drawable.tile_def &&
+                        tiles.get(j).getBackground() != R.drawable.tile_def) {
+                    if (tiles.get(j).getId() > tiles.get(i).getId()) {
+                        inversions++;
+                    }
+                }
+            }
+        }
+        return inversions % 2 != 1;
+    }
+
+    /**
      * Return whether the blank tile is on odd row.
      *
      * @param tiles the tiles
