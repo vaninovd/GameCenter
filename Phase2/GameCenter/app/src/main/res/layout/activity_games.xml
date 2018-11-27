@@ -8,29 +8,27 @@
 
     <Button
         android:id="@+id/StartSlidingTiles"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="120dp"
-        android:background="@drawable/round_button"
-        android:text="Sliding Tiles"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="100dp"
+        android:background="@drawable/sliding_tiles_game"
         android:textAllCaps="true"
         android:textColor="#ffffff"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
         android:id="@+id/Start2048"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_marginStart="148dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="148dp"
-        android:background="@drawable/round_button"
-        android:text="2048"
+        android:background="@drawable/block_2048"
         android:textAllCaps="true"
         android:textColor="#ffffff"
         android:textSize="17sp"
@@ -41,17 +39,32 @@
 
     <Button
         android:id="@+id/StartFlipCard"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_marginStart="146dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="146dp"
-        android:text="Flip Card"
         android:background="@drawable/round_button"
+        android:text="Flip Card"
         android:textAllCaps="true"
         android:textColor="#ffffff"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Start2048" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:text="Select a free game to play:"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
