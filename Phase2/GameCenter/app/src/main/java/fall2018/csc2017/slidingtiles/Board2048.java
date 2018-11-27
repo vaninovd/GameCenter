@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.Random;
-// TODO: JAVADOCS
 
 /**
  * The 2048 board.
@@ -30,6 +29,9 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
      */
     private static int score;
 
+    /**
+     * Value added after a successful move with merges (sum of all tiles merged)
+     */
     private static int scoreAdded;
 
     /**
@@ -256,6 +258,10 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
         notifyObservers();
     }
 
+    /**
+     * Adds score after a move is made.
+     * @param pow the power of two added after a move
+     */
     private void addScore(double pow) {
         Board2048.score += pow;
     }
@@ -321,27 +327,6 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
         return empty;
     }
 
-//    /**
-//     * Checks to see if a merge action was made from the previous to current board state
-//     * @return boolean
-//     */
-//    public boolean madeMerge(Tile2048[][] temp1, Tile2048[][] tiles) {
-//        int t1Count = 0;
-//        int tCount = 0;
-//        for (int row = 0; row < Board2048.NUM_ROWS; row++) {
-//            for (int col = 0; col < Board2048.NUM_COLS; col++) {
-//                // if it is not an empty tile
-//                if (temp1[row][col].getExponent() != 0) {
-//                    t1Count++;
-//                }
-//                if (tiles[row][col].getExponent() != 0) {
-//                    tCount++;
-//                }
-//            }
-//        }
-//        return isSpawnable(temp1, tiles) && t1Count == tCount;
-//    }
-
     /**
      * Checks if there are any holes in the board
      * @return boolean
@@ -406,6 +391,10 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
         return stuck;
     }
 
+    /**
+     * Prints string representatation of board
+     * @return String
+     */
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder();
