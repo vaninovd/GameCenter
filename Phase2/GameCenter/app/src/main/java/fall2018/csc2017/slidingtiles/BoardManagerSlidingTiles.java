@@ -1,5 +1,7 @@
 package fall2018.csc2017.slidingtiles;
 
+import android.service.quicksettings.Tile;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,6 +70,22 @@ class BoardManagerSlidingTiles implements Serializable {
         this.moves = new ArrayList<>();
         this.maxUndos = maxUndos;
         this.unlimitedMoves = unlimited;
+    }
+
+    /**
+     * Return whether the blank tile is on odd row.
+     *
+     * @param tiles the tiles
+     * @return boolean
+     */
+    private boolean blankOnOddRow(List<TileSlidingTiles> tiles) {
+        int i = 0;
+        for (TileSlidingTiles tile : tiles) {
+            if (tile.getId() == 16)
+                break;
+            i++;
+        }
+        return ((i / 4) % 2 == 1);
     }
 
     /**
