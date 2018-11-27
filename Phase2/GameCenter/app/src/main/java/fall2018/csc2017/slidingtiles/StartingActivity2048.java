@@ -45,7 +45,7 @@ public class StartingActivity2048 extends AppCompatActivity {
         addStartButtonListener();
         addLoadButtonListener();
         addSaveButtonListener();
-//        addScoreButtonListener();
+        addScoreButtonListener();
     }
 
     /**
@@ -83,6 +83,24 @@ public class StartingActivity2048 extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /**
+     * Activate the score button.
+     */
+    private void addScoreButtonListener() {
+        Button scoreButton = findViewById(R.id.ScoreButton2048);
+        scoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchToScoreboard();
+            }
+        });
+    }
+
+    private void switchToScoreboard() {
+        Intent tmp = new Intent(this, MainListView.class);
+        startActivity(tmp);
     }
 
     /**

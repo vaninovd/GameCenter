@@ -8,10 +8,13 @@ import android.widget.Button;
 
 public class GamesActivity extends AppCompatActivity {
 
+    public static String currGame;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
+        currGame = null;
         addStartSlidingTilesListener();
         addStart2048Listener();
         addStartFlipCardListener();
@@ -25,6 +28,7 @@ public class GamesActivity extends AppCompatActivity {
         StartSlidingTiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                currGame = "Sliding Tiles";
                 switchToSlidingTiles();
             }
         });
@@ -38,6 +42,7 @@ public class GamesActivity extends AppCompatActivity {
         Start2048.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                currGame = "2048";
                 switchTo2048();
             }
         });
@@ -51,6 +56,7 @@ public class GamesActivity extends AppCompatActivity {
         StartFlipCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                currGame = "Flip Card";
                 switchToFlipCard();
             }
         });

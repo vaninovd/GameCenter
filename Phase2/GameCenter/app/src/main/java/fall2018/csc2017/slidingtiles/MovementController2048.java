@@ -17,6 +17,13 @@ public class MovementController2048 {
         this.boardManager = boardManager;
     }
 
+    public void recordScore() {
+        String username = UserManager.currentUser;
+        User curruser = LoginActivity.users.getUser(username);
+        int score = Board2048.getScore();
+        curruser.addScore(StartingActivity.name, score);
+    }
+
     /**
      * process a swipe
      * @param context the current context
@@ -27,9 +34,11 @@ public class MovementController2048 {
             boardManager.makeMove(direction);
             if (boardManager.gameWon()) {
                 Toast.makeText(context, "YOU WIN! Check out the LEADERBOARD!", Toast.LENGTH_SHORT).show();
+                recordScore();
             }
         } else {
             Toast.makeText(context, "GAME OVER!", Toast.LENGTH_SHORT).show();
+            recordScore();
         }
     }
 }
