@@ -7,29 +7,7 @@ import java.io.Serializable;
 /**
  * A TileSlidingTiles in a sliding tiles puzzle.
  */
-public class Tile2048 implements Comparable<Tile2048>, Serializable {
-
-    /**
-     * The background id to find the tile image.
-     */
-    private int background;
-
-    private int exponent;
-
-    /**
-     * Return the background id of the background
-     *
-     * @return the background id
-     */
-    public int getBackground() {
-        return background;
-    }
-
-    /**
-     * The value on the 2048 tile
-     * @return int
-     */
-    public int getExponent() {return this.exponent;}
+public class Tile2048 extends Tile implements Comparable<Tile>, Serializable {
 
     /**
      * A tile with a background id; look up and set the id.
@@ -37,7 +15,7 @@ public class Tile2048 implements Comparable<Tile2048>, Serializable {
      * @param exponent
      */
     Tile2048(int exponent) {
-        this.exponent = exponent;
+        this.id = exponent;
         tile(exponent);
     }
 
@@ -53,9 +31,6 @@ public class Tile2048 implements Comparable<Tile2048>, Serializable {
         this.background = (int) pics[backgroundId];
     }
 
-    @Override
-    public int compareTo(@NonNull Tile2048 o) {
-        return o.exponent - this.exponent;
-    }
+
 }
 

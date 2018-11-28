@@ -39,7 +39,7 @@ class BoardManager2048 implements Serializable {
         outer:
         for (int row=0; row < Board2048.NUM_ROWS; row++) {
             for (int col=0; col < Board2048.NUM_COLS; col++) {
-                if (board.tiles[row][col].getExponent() >= 11) {
+                if (board.tiles[row][col].getId() >= 11) {
                     won = true;
                     break outer;
                 }

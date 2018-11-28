@@ -1,41 +1,11 @@
 package fall2018.csc2017.slidingtiles;
 
-import android.support.annotation.NonNull;
-
 import java.io.Serializable;
 
 /**
  * A TileSlidingTiles in a sliding tiles puzzle.
  */
-public class TileSlidingTiles implements Comparable<TileSlidingTiles>, Serializable {
-
-    /**
-     * The background id to find the tile image.
-     */
-    private int background;
-
-    /**
-     * The unique id.
-     */
-    private int id;
-
-    /**
-     * Return the background id.
-     *
-     * @return the background id
-     */
-    public int getBackground() {
-        return background;
-    }
-
-    /**
-     * Return the tile id.
-     *
-     * @return the tile id
-     */
-    public int getId() {
-        return id;
-    }
+public class TileSlidingTiles extends Tile implements Comparable<Tile>, Serializable {
 
     /**
      * A TileSlidingTiles with id and background. The background may not have a corresponding image.
@@ -107,8 +77,4 @@ public class TileSlidingTiles implements Comparable<TileSlidingTiles>, Serializa
         background = (int) pics[backgroundId];
     }
 
-    @Override
-    public int compareTo(@NonNull TileSlidingTiles o) {
-        return o.id - this.id;
-    }
 }

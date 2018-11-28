@@ -47,7 +47,6 @@ public class BoardFC extends Observable implements Serializable, Iterable<TileFC
      * @param tiles the tiles for the board
      */
     BoardFC(List<TileFC> tiles) {
-        System.out.println("BOARD CREATED");
         Iterator<TileFC> tIterator = tiles.iterator();
 
         for (int row = 0; row != BoardFC.NUM_ROWS; row++) {

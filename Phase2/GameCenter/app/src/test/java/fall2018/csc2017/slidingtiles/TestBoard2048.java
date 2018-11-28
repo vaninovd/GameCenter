@@ -26,10 +26,10 @@ public class TestBoard2048 {
                 new Tile2048(0)};
         this.board.tiles[0] = temp;
         this.board.mergeLeft();
-        boolean exp = (this.board.tiles[0][0].getExponent() == 2) &
-                (this.board.tiles[0][1].getExponent() == 0) &
-                (this.board.tiles[0][2].getExponent() == 0) &
-                (this.board.tiles[0][3].getExponent() == 0);
+        boolean exp = (this.board.tiles[0][0].getId() == 2) &
+                (this.board.tiles[0][1].getId() == 0) &
+                (this.board.tiles[0][2].getId() == 0) &
+                (this.board.tiles[0][3].getId() == 0);
         assertTrue(exp);
         tearDown();
     }
@@ -42,10 +42,10 @@ public class TestBoard2048 {
         this.board.tiles[2][0] = new Tile2048(1);
         this.board.tiles[3][0] = new Tile2048(1);
         this.board.mergeUp();
-        boolean exp = (this.board.tiles[0][0].getExponent() == 2) &
-                (this.board.tiles[1][0].getExponent() == 2) &
-                (this.board.tiles[2][0].getExponent() == 0) &
-                (this.board.tiles[3][0].getExponent() == 0);
+        boolean exp = (this.board.tiles[0][0].getId() == 2) &
+                (this.board.tiles[1][0].getId() == 2) &
+                (this.board.tiles[2][0].getId() == 0) &
+                (this.board.tiles[3][0].getId() == 0);
         assertTrue(exp);
         tearDown();
     }
@@ -59,10 +59,10 @@ public class TestBoard2048 {
                 new Tile2048(0)};
         this.board.tiles[0] = temp;
         this.board.mergeRight();
-        boolean exp = (this.board.tiles[0][0].getExponent() == 0) &
-                (this.board.tiles[0][1].getExponent() == 0) &
-                (this.board.tiles[0][2].getExponent() == 0) &
-                (this.board.tiles[0][3].getExponent() == 2);
+        boolean exp = (this.board.tiles[0][0].getId() == 0) &
+                (this.board.tiles[0][1].getId() == 0) &
+                (this.board.tiles[0][2].getId() == 0) &
+                (this.board.tiles[0][3].getId() == 2);
         assertTrue(exp);
         tearDown();
     }
@@ -75,10 +75,10 @@ public class TestBoard2048 {
         this.board.tiles[2][0] = new Tile2048(1);
         this.board.tiles[3][0] = new Tile2048(1);
         this.board.mergeUp();
-        boolean exp = (this.board.tiles[0][0].getExponent() == 0) &
-                (this.board.tiles[1][0].getExponent() == 0) &
-                (this.board.tiles[2][0].getExponent() == 2) &
-                (this.board.tiles[3][0].getExponent() == 2);
+        boolean exp = (this.board.tiles[0][0].getId() == 0) &
+                (this.board.tiles[1][0].getId() == 0) &
+                (this.board.tiles[2][0].getId() == 2) &
+                (this.board.tiles[3][0].getId() == 2);
         assertTrue(exp);
         tearDown();
     }
@@ -120,7 +120,7 @@ public class TestBoard2048 {
         outer:
         for (int row = 0; row != Board2048.NUM_ROWS; row++) {
             for (int col = 0; col != Board2048.NUM_COLS; col++) {
-                if ((board.tiles[row][col].getExponent() != 0) & count == 2) {
+                if ((board.tiles[row][col].getId() != 0) & count == 2) {
                     exp = true;
                     break outer;
                 } else {
