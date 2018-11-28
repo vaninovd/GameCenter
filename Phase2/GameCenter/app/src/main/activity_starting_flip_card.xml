@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="fall2018.csc2017.slidingtiles.StartingActivityFC">
+
+    <TextView
+        android:id="@+id/GameText"
+        android:layout_width="wrap_content"
+        android:layout_height="105dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center"
+        android:text="@string/welcome_to_flip_card"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/StartButton"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="179dp"
+        android:background="@drawable/round_button"
+        android:shape="oval"
+        android:text="@string/new_game"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/LoadButton"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/StartButton"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="-141dp"
+        android:layout_toStartOf="@+id/StartButton"
+        android:background="@drawable/round_button"
+        android:text="load saved"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/LoadButton"
+        android:layout_marginStart="-139dp"
+        android:layout_marginTop="22dp"
+        android:layout_toEndOf="@+id/StartButton"
+        android:background="@drawable/round_button"
+        android:text="@string/save_game"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/ScoreButton"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/round_button"
+        android:text="leaderboard"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+</RelativeLayout>
