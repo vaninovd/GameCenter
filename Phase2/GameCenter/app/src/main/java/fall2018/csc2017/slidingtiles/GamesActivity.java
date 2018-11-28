@@ -85,7 +85,7 @@ public class GamesActivity extends AppCompatActivity {
      */
     private void switchToFlipCard() {
         // Temporary BoardManagerFlipCard.class -- change to a main one
-        Intent tmp = new Intent(this, BoardManagerFlipCard.class);
+        Intent tmp = new Intent(this, StartingActivityFC.class);
         startActivity(tmp);
     }
 }

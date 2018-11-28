@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/activity_main_pic">
+
+    <fall2018.csc2017.slidingtiles.GestureDetectGridViewFC xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/grid_fc"
+        android:layout_width="440dp"
+        android:layout_height="420dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="138dp"
+        android:layout_marginBottom="120dp"
+        android:visibility="visible"
+        tools:context="fall2018.csc2017.slidingtiles.GameActivityFC" />
+
+    <Button
+        android:id="@+id/undoButton"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/undo"
+        android:onClick="undoButton"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/NumMoves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="568dp"
+        android:text="Score Count"
+        android:textSize="55sp" />
+
+
+</RelativeLayout>
+
+
+
+

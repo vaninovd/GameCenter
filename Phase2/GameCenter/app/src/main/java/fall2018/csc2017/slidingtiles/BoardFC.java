@@ -13,10 +13,10 @@ import java.util.List;
 /**
  * The sliding tiles board.
  */
-public class BoardFlipCard extends Observable implements Serializable, Iterable<TileFlipCard> {
+public class BoardFC extends Observable implements Serializable, Iterable<TileFC> {
 
     /**
-     * The number of rows in BoardSlidingTiles.
+     * The number of rows in BoardFC.
      */
     static int NUM_ROWS;
 
@@ -28,7 +28,17 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
     /**
      * The tiles on the board in row-major order.
      */
-    public TileFlipCard[][] tiles = new TileFlipCard[NUM_ROWS][NUM_COLS];
+    public TileFC[][] tiles = new TileFC[NUM_ROWS][NUM_COLS];
+
+    /**
+     * Row index of blank tile.
+     */
+    private int blankRow;
+
+    /**
+     * Column index of blank tile.
+     */
+    private int blankCol;
 
     /**
      * A new board of tiles in row-major order.
@@ -36,12 +46,18 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
      *
      * @param tiles the tiles for the board
      */
-    BoardFlipCard(List<TileFlipCard> tiles) {
-        Iterator<TileFlipCard> tIterator = tiles.iterator();
+    BoardFC(List<TileFC> tiles) {
+        System.out.println("BOARD CREATED");
+        Iterator<TileFC> tIterator = tiles.iterator();
 
-        for (int row = 0; row != BoardSlidingTiles.NUM_ROWS; row++) {
-            for (int col = 0; col != BoardSlidingTiles.NUM_COLS; col++) {
-                TileFlipCard tile = tIterator.next();
+        for (int row = 0; row != BoardFC.NUM_ROWS; row++) {
+            for (int col = 0; col != BoardFC.NUM_COLS; col++) {
+                TileFC tile = tIterator.next();
+                //if detected blank tile, set blank tile coordinates
+                if (tile.getId() == this.numTiles()) {
+                    blankRow = row;
+                    blankCol = col;
+                }
                 this.tiles[row][col] = tile;
             }
         }
@@ -64,31 +80,79 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
      * @param col the tile column
      * @return the tile at (row, col)
      */
-    TileFlipCard getTileFlipCard(int row, int col) {
+    TileFC getTile(int row, int col) {
         return tiles[row][col];
+    }
+
+    TileFC getTile(int position) {
+        if (position < 0 || position > 36) {
+            position = 0;
+        }
+        int row = position / BoardFC.NUM_ROWS;
+        int col = position % BoardFC.NUM_COLS;
+        return tiles[row][col];
+
     }
 
     @Override
     public String toString() {
-        return "BoardSlidingTiles{" +
+        return "BoardFC{" +
                 "tiles=" + Arrays.toString(tiles) +
                 '}';
     }
 
-    /**
-     * Return an iterator for this BoardSlidingTiles.
-     *
-     * @return iterator for this BoardSlidingTiles.
-     */
-    @NonNull
-    public Iterator<TileFlipCard> iterator() {
-        return new IteratorTile(this.tiles);
+    public void showBlank(int row, int col) {
+        tiles[row][col].showBlank();
+    }
+
+    public void showBlank(int position) {
+        if (position < 0 || position > 36) {
+            position = 0;
+        }
+
+        int row = position / BoardFC.NUM_ROWS;
+        int col = position % BoardFC.NUM_COLS;
+        tiles[row][col].showBlank();
+    }
+
+    public void showPicture(int row, int col) {
+        tiles[row][col].showPicture();
+    }
+
+    public void showPicture(int position) {
+        if (position < 0 || position > 36) {
+            position = 0;
+        }
+
+        int row = position / BoardFC.NUM_ROWS;
+        int col = position % BoardFC.NUM_COLS;
+        tiles[row][col].showPicture();
+
     }
 
     /**
-     * Iterator for BoardSlidingTiles. Iterates over the tiles on the board.
+     * Return an iterator for this BoardFC.
+     *
+     * @return iterator for this BoardFC.
      */
-    public class IteratorTile implements Iterator<TileFlipCard> {
+    @NonNull
+    public Iterator<TileFC> iterator() {
+        return new IteratorTile(this.tiles);
+    }
+
+    int getBlankCol() {
+        return blankCol;
+    }
+
+    int getBlankRow() {
+        return blankRow;
+    }
+
+
+    /**
+     * Iterator for BoardFC. Iterates over the tiles on the board.
+     */
+    public class IteratorTile implements Iterator<TileFC> {
 
 
         /**
@@ -102,9 +166,9 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
         private int colIndex;
 
         /**
-         * BoardSlidingTiles of tiles over which to iterate.
+         * BoardFC of tiles over which to iterate.
          */
-        private TileFlipCard[][] tiles;
+        private TileFC[][] tiles;
 
         /**
          * Total number of tiles returned so far.
@@ -119,9 +183,9 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
         /**
          * A new iterator.
          *
-         * @param tileGrid a TileSlidingTiles grid over which to iterate.
+         * @param tileGrid a TileFC grid over which to iterate.
          */
-        IteratorTile(TileFlipCard[][] tileGrid) {
+        IteratorTile(TileFC[][] tileGrid) {
             this.tiles = tileGrid;
             this.rowIndex = 0;
             this.colIndex = 0;
@@ -135,8 +199,8 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
         }
 
         @Override
-        public TileFlipCard next() {
-            TileFlipCard toReturn = tiles[rowIndex][colIndex];
+        public TileFC next() {
+            TileFC toReturn = tiles[rowIndex][colIndex];
             if (totalSoFar < size) {
                 if (colIndex == NUM_COLS - 1) {
                     colIndex = 0;
@@ -153,6 +217,4 @@ public class BoardFlipCard extends Observable implements Serializable, Iterable<
             return toReturn;
         }
     }
-
-
 }
