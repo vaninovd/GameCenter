@@ -23,12 +23,12 @@ public class StartingActivityFC extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static String SAVE_FILENAME = LoginActivity.users.getCurrentUser() + ".ser";
+    public static String SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "FC.ser";
 
     /**
      * A temporary save file.
      */
-    public static String TEMP_SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "_temp.ser";
+    public static String TEMP_SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "FC_temp.ser";
     /**
      * The board manager.
      */

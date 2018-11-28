@@ -23,12 +23,12 @@ public class StartingActivity2048 extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static String SAVE_FILENAME = LoginActivity.users.getCurrentUser() + ".ser";
+    public static String SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "2048.ser";
 
     /**
      * A temporary save file.
      */
-    public static String TEMP_SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "_temp.ser";
+    public static String TEMP_SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "2048_temp.ser";
     /**
      * The board manager.
      */
