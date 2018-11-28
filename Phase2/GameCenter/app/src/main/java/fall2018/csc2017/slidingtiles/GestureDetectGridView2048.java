@@ -17,9 +17,7 @@ import android.view.MotionEvent;
 import android.widget.GridView;
 
 public class GestureDetectGridView2048 extends GridView {
-    public static final int SWIPE_MIN_DISTANCE = 75;
-    public static final int SWIPE_MAX_OFF_PATH = 100;
-    public static final int SWIPE_THRESHOLD_VELOCITY = 75;
+    public static final int SWIPE_MIN_DISTANCE = 30;
     private GestureDetector gDetector;
     private MovementController2048 mController;
     private boolean mFlingConfirmed = false;
