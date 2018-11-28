@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -190,21 +191,23 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
         }
     }
 
-//    /**
-//     * Auto Save the board manager to fileName every 3 moves.
-//     *
-//     * @param fileName the name of the file
-//     */
-//    public void autoSave(String fileName){
-//        if (boardManager.getSizeMoves() % 3 == 0) {
-//            saveToFile(fileName);
-//            Toast.makeText(this, "Your Game was saved!", Toast.LENGTH_SHORT).show();
-//        }
-//    }
+    /**
+     * Auto Save the board manager to fileName every 3 moves.
+     *
+     * @param fileName the name of the file
+     */
+    public void autoSave(String fileName){
+        if (boardManager.getBoard().getNumMoves() % 3 == 0) {
+            saveToFile(fileName);
+            Toast toast = Toast.makeText(this, "Your Game was saved!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+            toast.show();
+        }
+    }
 
     @Override
     public void update(Observable o, Object arg) {
-        //autoSave(StartingActivity2048.SAVE_FILENAME);
+        autoSave(StartingActivity2048.SAVE_FILENAME);
         display();
         Toast.makeText(this, "+" + Integer.toString(Board2048.getScoreAdded()), Toast.LENGTH_SHORT).show();
     }
