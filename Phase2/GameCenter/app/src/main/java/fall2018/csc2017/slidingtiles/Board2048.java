@@ -124,7 +124,6 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
      */
     public void mergeLeft() {
         Tile2048[][] temp1 = makeTempCopy(tiles);
-        numMoves += 1;
         pushLeft();
         int tempAdded = score;
         for (int row = 0; row != Board2048.NUM_ROWS; row++) {
@@ -141,6 +140,7 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
         scoreAdded = getScore() - tempAdded;
         pushLeft();
         if (isSpawnable(temp1, tiles)) {
+            numMoves += 1;
             spawnTile();
         }
         setChanged();
@@ -171,7 +171,6 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
      */
     public void mergeRight() {
         Tile2048[][] temp1 = makeTempCopy(tiles);
-        numMoves += 1;
         pushRight();
         int tempAdded = score;
         for (int row = 0; row < Board2048.NUM_ROWS; row++) {
@@ -188,6 +187,7 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
         scoreAdded = getScore() - tempAdded;
         pushRight();
         if (isSpawnable(temp1, tiles)) {
+            numMoves += 1;
             spawnTile();
         }
         setChanged();
@@ -219,7 +219,6 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
         Tile2048[][] temp1 = makeTempCopy(tiles);
         pushUp();
         int tempAdded = score;
-        numMoves += 1;
         for (int col = 0; col < Board2048.NUM_COLS; col++) {
             for (int row = 1; row < Board2048.NUM_ROWS; row++) {
                 Tile2048 prevTile = tiles[row - 1][col];
@@ -234,6 +233,7 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
         scoreAdded = getScore() - tempAdded;
         pushUp();
         if (isSpawnable(temp1, tiles)) {
+            numMoves += 1;
             spawnTile();
         }
         setChanged();
@@ -263,8 +263,8 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
     public void mergeDown() {
         // make a copy of the current state as to not mutate it
         Tile2048[][] temp1 = makeTempCopy(tiles);
-        pushDown();
         numMoves += 1;
+        pushDown();
         int tempAdded = score;
         for (int col = 0; col < Board2048.NUM_COLS; col++) {
             for (int row = Board2048.NUM_ROWS - 2; row >= 0; row--) {
@@ -280,6 +280,7 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
         scoreAdded = getScore() - tempAdded;
         pushDown();
         if (isSpawnable(temp1, tiles)) {
+            numMoves += 1;
             spawnTile();
         }
         setChanged();
