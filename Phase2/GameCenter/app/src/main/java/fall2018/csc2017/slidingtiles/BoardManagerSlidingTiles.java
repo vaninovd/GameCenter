@@ -98,7 +98,7 @@ class BoardManagerSlidingTiles extends BoardManager implements Serializable {
      * @param tiles the tiles
      * @return boolean
      */
-    private boolean evenNumOfInversions(List<TileSlidingTiles> tiles) {
+    public boolean evenNumOfInversions(List<TileSlidingTiles> tiles) {
         int inversions = 0;
         for (int i = 0; i < tiles.size(); i++) {
             for (int j = i + 1; j < tiles.size(); j++) {
@@ -133,14 +133,15 @@ class BoardManagerSlidingTiles extends BoardManager implements Serializable {
      * @param tiles the tiles
      * @return boolean
      */
-    private boolean blankOnOddRow(List<TileSlidingTiles> tiles) {
+    public boolean blankOnOddRow(List<TileSlidingTiles> tiles) {
         int i = 0;
+        int blankId = board.numTiles();
         for (TileSlidingTiles tile : tiles) {
-            if (tile.getId() == 16)
+            if (tile.getId() == blankId)
                 break;
             i++;
         }
-        return ((i / 4) % 2 == 1);
+        return ((i / Board.NUM_ROWS) % 2 == 1);
     }
 
     /**
@@ -194,6 +195,13 @@ class BoardManagerSlidingTiles extends BoardManager implements Serializable {
                 || (above != null && above.getId() == blankId)
                 || (left != null && left.getId() == blankId)
                 || (right != null && right.getId() == blankId);
+    }
+
+    /**
+     * Return the current board.
+     */
+    Board getBoardST() {
+        return (BoardSlidingTiles)this.board;
     }
 
     /**

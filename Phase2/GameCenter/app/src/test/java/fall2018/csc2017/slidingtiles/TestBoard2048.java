@@ -92,13 +92,13 @@ public class TestBoard2048 {
         tearDown();
     }
 
-    @Test
-    public void testMakeTempCopy() {
-        setUp();
-        Tile2048[][] copy = board.makeTempCopy(board.tiles);
-        assertNotEquals(copy, this.board);
-        tearDown();
-    }
+//    @Test
+//    public void testMakeTempCopy() {
+//        setUp();
+//        Tile2048[][] copy = board.makeTempCopy(board.tiles);
+//        assertNotEquals(copy, this.board);
+//        tearDown();
+//    }
 
     @Test
     public void testPushLeft() {}
