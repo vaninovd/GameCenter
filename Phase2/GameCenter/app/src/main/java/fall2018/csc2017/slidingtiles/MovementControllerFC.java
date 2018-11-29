@@ -5,7 +5,6 @@ import android.widget.Toast;
 
 import static fall2018.csc2017.slidingtiles.BoardManagerFC.getNumMoves;
 
-
 public class MovementControllerFC {
 
     private BoardManagerFC boardManagerFC = null;
@@ -27,7 +26,7 @@ public class MovementControllerFC {
         if (boardManagerFC.isValidTap(position)) {
             BoardManagerFC.setNumMoves(getNumMoves() + 1);
             boardManagerFC.touchMove(position);
-            if (boardManagerFC.puzzleSolved()) {
+            if (boardManagerFC.gameWon()) {
                 Toast.makeText(context, "YOU WIN! Check out the LEADERBOARD!", Toast.LENGTH_SHORT).show();
                 String username = UserManager.currentUser;
                 User curruser = LoginActivity.users.getUser(username);

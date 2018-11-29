@@ -165,7 +165,7 @@ public class StartingActivity2048 extends AppCompatActivity {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
                 boardManager = (BoardManager2048) input.readObject();
                 if (boardManager != null) {
-                    setBoardSize(boardManager.getBoard().tiles.length);
+                    setBoardSize();
                 }
                 inputStream.close();
             }
@@ -197,11 +197,10 @@ public class StartingActivity2048 extends AppCompatActivity {
 
     /**
      * Sets the size of the 2048 board.
-     * @param size size of the board (square)
      */
-    public void setBoardSize(int size) {
-        Board2048.NUM_ROWS = size;
-        Board2048.NUM_COLS = size;
+    public void setBoardSize() {
+        Board2048.NUM_ROWS = 4;
+        Board2048.NUM_COLS = 4;
     }
 
     /**

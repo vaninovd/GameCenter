@@ -107,7 +107,7 @@ public class GameActivitySlidingTiles extends AppCompatActivity implements Obser
      * Switch to ScoreBoard view after game ends.
      */
     private void switchtoScoreboard() {
-        if (boardManager.puzzleSolved()){
+        if (boardManager.gameWon()){
             Intent switchtoscore = new Intent(this, MainListView.class);
             startActivity(switchtoscore);
         }
@@ -119,7 +119,7 @@ public class GameActivitySlidingTiles extends AppCompatActivity implements Obser
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        BoardSlidingTiles board = boardManager.getBoard();
+        Board board = boardManager.getBoard();
         tileButtons = new ArrayList<>();
         for (int row = 0; row != BoardSlidingTiles.NUM_ROWS; row++) {
             for (int col = 0; col != BoardSlidingTiles.NUM_COLS; col++) {
@@ -146,7 +146,7 @@ public class GameActivitySlidingTiles extends AppCompatActivity implements Obser
      * Update the backgrounds on the buttons to match the tiles.
      */
     private void updateTileButtons() {
-        BoardSlidingTiles board = boardManager.getBoard();
+        Board board = boardManager.getBoard();
         int nextPos = 0;
         for (Button b : tileButtons) {
             int row = nextPos / BoardSlidingTiles.NUM_ROWS;

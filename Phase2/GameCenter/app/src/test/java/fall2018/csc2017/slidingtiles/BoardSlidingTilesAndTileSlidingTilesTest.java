@@ -44,7 +44,7 @@ public class BoardSlidingTilesAndTileSlidingTilesTest {
      * Shuffle a few tiles.
      */
     private void swapFirstTwoTiles() {
-        boardManager.getBoard().swapTiles(0, 0, 0, 1);
+        ((BoardSlidingTiles)boardManager.getBoard()).swapTiles(0, 0, 0, 1);
     }
 
     /**
@@ -53,9 +53,9 @@ public class BoardSlidingTilesAndTileSlidingTilesTest {
     @Test
     public void testIsSolved() {
         setUpCorrect();
-        assertEquals(true, boardManager.puzzleSolved());
+        assertEquals(true, boardManager.gameWon());
         swapFirstTwoTiles();
-        assertEquals(false, boardManager.puzzleSolved());
+        assertEquals(false, boardManager.gameWon());
     }
 
     /**
@@ -66,7 +66,7 @@ public class BoardSlidingTilesAndTileSlidingTilesTest {
         setUpCorrect();
         assertEquals(1, boardManager.getBoard().getTile(0, 0).getId());
         assertEquals(2, boardManager.getBoard().getTile(0, 1).getId());
-        boardManager.getBoard().swapTiles(0, 0, 0, 1);
+        ((BoardSlidingTiles)boardManager.getBoard()).swapTiles(0, 0, 0, 1);
         assertEquals(2, boardManager.getBoard().getTile(0, 0).getId());
         assertEquals(1, boardManager.getBoard().getTile(0, 1).getId());
     }
@@ -79,7 +79,7 @@ public class BoardSlidingTilesAndTileSlidingTilesTest {
         setUpCorrect();
         assertEquals(15, boardManager.getBoard().getTile(3, 2).getId());
         assertEquals(16, boardManager.getBoard().getTile(3, 3).getId());
-        boardManager.getBoard().swapTiles(3, 3, 3, 2);
+        ((BoardSlidingTiles)boardManager.getBoard()).swapTiles(3, 3, 3, 2);
         assertEquals(16, boardManager.getBoard().getTile(3, 2).getId());
         assertEquals(15, boardManager.getBoard().getTile(3, 3).getId());
     }

@@ -8,20 +8,24 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Observable;
 
+
+/**
+ * The Board superclass.
+ */
 public class Board  extends Observable implements Serializable, Iterable<Tile> {
 
     /**
-     * The number of rows in BoardFC.
+     * The number of rows in this Board.
      */
     static int NUM_ROWS = 4;
 
     /**
-     * The number of rows.
+     * The number of cols in this Board.
      */
     static int NUM_COLS = 4;
 
     /**
-     * The tiles on the board in row-major order.
+     * The tiles on the board.
      */
     public Tile[][] tiles= new Tile[NUM_COLS][NUM_ROWS];
 
@@ -45,16 +49,24 @@ public class Board  extends Observable implements Serializable, Iterable<Tile> {
         return tiles[row][col];
     }
 
-//    TileFC getTile(int position) {
-//        if (position < 0 || position > 36) {
-//            position = 0;
-//        }
-//        int row = position / BoardFC.NUM_ROWS;
-//        int col = position % BoardFC.NUM_COLS;
-//        return tiles[row][col];
-//    }
+    /**
+     * Return the tile at position.
+     * @param position int position of the tile
+     * @return tile at position.
+     */
+    Tile getTile(int position) {
+        if (position < 0 || position > 36) {
+            position = 0;
+        }
+        int row = position / BoardFC.NUM_ROWS;
+        int col = position % BoardFC.NUM_COLS;
+        return tiles[row][col];
+    }
 
-
+    /**
+     * String representation of the board.
+     * @return string representing the board.
+     */
     @Override
     public String toString() {
         return "Board{" +
@@ -64,7 +76,6 @@ public class Board  extends Observable implements Serializable, Iterable<Tile> {
 
     /**
      * Return an iterator for this Board.
-     *
      * @return iterator for this Board.
      */
     @NonNull

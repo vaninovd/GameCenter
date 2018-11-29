@@ -12,16 +12,11 @@ import static java.lang.StrictMath.abs;
 /**
  * Manage a boardFC, including swapping tiles, checking for a win, and managing taps.
  */
-class BoardManagerFC implements Serializable {
-
-    public int size = BoardFC.NUM_COLS;
+class BoardManagerFC extends BoardManager implements Serializable {
 
     /**
-     * The boardFC being managed.
+     * The number of clicks made by player.
      */
-    private BoardFC boardFC;
-
-
     private int clickNumber = 0;
 
     /**
@@ -30,11 +25,13 @@ class BoardManagerFC implements Serializable {
     private static int numMoves = 0;
 
     /**
-     * The position of first click made
+     * The position of first click made.
      */
-
     private int firstClicked;
 
+    /**
+     * The position of the second click made.
+     */
     private int secondClicked;
 
     /**
@@ -44,12 +41,10 @@ class BoardManagerFC implements Serializable {
 
     /**
      * Manage a default (3 undos allowed) boardFC that has been pre-populated.
-     *
      * @param boardFC the boardFC
      */
-
-    BoardManagerFC(BoardFC boardFC) {
-        this.boardFC = boardFC;
+    BoardManagerFC(Board boardFC) {
+        this.board = boardFC;
     }
 
     /**
@@ -62,7 +57,7 @@ class BoardManagerFC implements Serializable {
             tiles.add(new TileFC(tileNum));
         }
         Collections.shuffle(tiles);
-        this.boardFC = new BoardFC(tiles);
+        this.board = new BoardFC(tiles);
     }
 
     /**
@@ -72,10 +67,17 @@ class BoardManagerFC implements Serializable {
         return numMoves;
     }
 
+    /**
+     * Reset the number of moves.
+     */
     public static void resetNumMoves() {
         numMoves = 0;
     }
 
+    /**
+     * Set the number of moves.
+     * @param numMoves
+     */
     public static void setNumMoves(int numMoves) {
         BoardManagerFC.numMoves = numMoves;
     }
@@ -84,18 +86,16 @@ class BoardManagerFC implements Serializable {
      * Return the current boardFC.
      */
     Board getBoardFC() {
-        return boardFC;
+        return board;
     }
 
     /**
      * Return whether the tiles are all facing up, i.e. game is over.
-     *
      * @return whether the tiles are in row-major order
      */
-    boolean puzzleSolved() {
-        for (Tile t : this.boardFC) {
-            TileFC m = (TileFC) t;
-            if (!m.isUp()) {
+    boolean gameWon() {
+        for (Tile t : this.board) {
+            if (!((TileFC)t).isUp()) {
                 return false;
             }
         }
@@ -109,7 +109,7 @@ class BoardManagerFC implements Serializable {
      * @return whether the tile at position is surrounded by a blank tile
      */
     boolean isValidTap(int position) {
-        return !boardFC.getTile(position).isUp();
+        return !((TileFC)board.getTile(position)).isUp();
     }
 
     /**
@@ -122,10 +122,10 @@ class BoardManagerFC implements Serializable {
             clickNumber ++;
             if (clickNumber % 2 == 1) {
                 firstClicked = position;
-                boardFC.showPicture(firstClicked);
+                ((BoardFC)board).showPicture(firstClicked);
             } else {
                 secondClicked = position;
-                boardFC.showPicture(secondClicked);
+                ((BoardFC)board).showPicture(secondClicked);
             }
             clickEnabled = false;
             processCLick();
@@ -134,21 +134,21 @@ class BoardManagerFC implements Serializable {
     }
 
     /**
-     * Process the result of this click.
+     * Process the result of this click. Either flip back last two tiles clicked (if they are different)
+     * or leave them up if they are the same.
      */
     public void processCLick() {
-
         if (clickNumber % 2 == 0) {
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     //get tiles at positions
-                    TileFC tile1 = boardFC.getTile(firstClicked);
-                    TileFC tile2 = boardFC.getTile(secondClicked);
-                    if (abs(tile1.getId() - tile2.getId()) != (boardFC.numTiles() / 2)) {
-                        boardFC.showBlank(firstClicked);
-                        boardFC.showBlank(secondClicked);
+                    Tile tile1 = board.getTile(firstClicked);
+                    Tile tile2 = board.getTile(secondClicked);
+                    if (abs(tile1.getId() - tile2.getId()) != (board.numTiles() / 2)) {
+                        ((BoardFC)board).showBlank(firstClicked);
+                        ((BoardFC)board).showBlank(secondClicked);
                     }
                     clickEnabled = true;
                 }
@@ -160,12 +160,13 @@ class BoardManagerFC implements Serializable {
     }
 
     /**
-     * Process an undo command.
+     * Process an undo command. Can undo only when first card is up. If second card was flipped,
+     * no undo is possible until the move is processed.
      */
     void undoMove() {
         if (clickNumber % 2 == 1) {
             clickNumber++;
-            boardFC.getTile(firstClicked).showBlank();
+            ((TileFC)board.getTile(firstClicked)).showBlank();
         }
     }
 

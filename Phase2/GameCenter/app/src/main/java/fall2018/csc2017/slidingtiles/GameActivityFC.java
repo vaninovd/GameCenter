@@ -110,7 +110,7 @@ public class GameActivityFC extends AppCompatActivity implements Observer {
      * Switch to ScoreBoard view after game ends.
      */
     private void switchtoScoreboard() {
-        if (boardManager.puzzleSolved()){
+        if (boardManager.gameWon()){
             Intent switchtoscore = new Intent(this, MainListView.class);
             startActivity(switchtoscore);
         }

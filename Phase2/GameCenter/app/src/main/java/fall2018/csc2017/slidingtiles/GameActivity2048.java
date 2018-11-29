@@ -2,6 +2,7 @@ package fall2018.csc2017.slidingtiles;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -99,18 +100,18 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
                     }
                 });
 
-       // switchtoScoreboard();
+        switchtoScoreboard();
     }
 
-//    /**
-//     * Switch to ScoreBoard view after game ends.
-//     */
-//    private void switchtoScoreboard() {
-//        if (boardManager.gameWon()){
-//            Intent switchtoscore = new Intent(this, MainListView.class);
-//            startActivity(switchtoscore);
-//        }
-//    }
+    /**
+     * Switch to ScoreBoard view after game ends.
+     */
+    private void switchtoScoreboard() {
+        if (boardManager.gameWon()){
+            Intent switchtoscore = new Intent(this, MainListView.class);
+            startActivity(switchtoscore);
+        }
+    }
 
     /**
      * Create the buttons for displaying the tiles.
@@ -118,7 +119,7 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        Board2048 board = boardManager.getBoard();
+        Board board = boardManager.getBoard();
         tileButtons = new ArrayList<>();
         for (int row = 0; row != Board2048.NUM_ROWS; row++) {
             for (int col = 0; col != Board2048.NUM_COLS; col++) {
@@ -133,7 +134,7 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      * Update the backgrounds on the buttons to match the tiles.
      */
     private void updateTileButtons() {
-        Board2048 board = boardManager.getBoard();
+        Board board = boardManager.getBoard();
         int nextPos = 0;
         for (Button b : tileButtons) {
             int row = nextPos / Board2048.NUM_ROWS;
@@ -197,7 +198,7 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      * @param fileName the name of the file
      */
     public void autoSave(String fileName){
-        if (boardManager.getBoard().getNumMoves() % 3 == 0) {
+        if (((Board2048)boardManager.getBoard()).getNumMoves() % 3 == 0) {
             saveToFile(fileName);
             Toast toast = Toast.makeText(this, "Your Game was saved!", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);

@@ -5,14 +5,7 @@ import java.io.Serializable;
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-class BoardManager2048 implements Serializable {
-
-    public int size = Board2048.NUM_COLS;
-
-    /**
-     * The board being managed.
-     */
-    private Board2048 board;
+class BoardManager2048 extends BoardManager implements Serializable {
 
     /**
      * Constructor for BoardManager class
@@ -24,7 +17,7 @@ class BoardManager2048 implements Serializable {
     /**
      * Return the current board.
      */
-    Board2048 getBoard() {
+    Board getBoard() {
         return board;
     }
 
@@ -34,7 +27,7 @@ class BoardManager2048 implements Serializable {
      * @return whether the tiles are in row-major order
      */
     boolean gameWon() {
-        Board2048 board = this.getBoard();
+        Board board = this.getBoard();
         boolean won = false;
         outer:
         for (int row=0; row < Board2048.NUM_ROWS; row++) {
@@ -53,7 +46,7 @@ class BoardManager2048 implements Serializable {
      * @return boolean
      */
     public boolean gameOver() {
-        return this.board.isStuck();
+        return ((Board2048)this.board).isStuck();
     }
 
     /**
@@ -63,16 +56,16 @@ class BoardManager2048 implements Serializable {
     public void makeMove(int direction){
         switch(direction) {
             case 1:
-                this.board.mergeLeft();
+                ((Board2048)this.board).mergeLeft();
                 break;
             case 2:
-                this.board.mergeUp();
+                ((Board2048)this.board).mergeUp();
                 break;
             case 3:
-                this.board.mergeRight();
+                ((Board2048)this.board).mergeRight();
                 break;
             case 4:
-                this.board.mergeDown();
+                ((Board2048)this.board).mergeDown();
                 break;
         }
     }

@@ -101,6 +101,7 @@ public class Board2048 extends Board implements Serializable, Iterable<Tile> {
         }
         return temp;
     }
+
     /**
      * Merges tiles together when a left swipe is initiated
      */

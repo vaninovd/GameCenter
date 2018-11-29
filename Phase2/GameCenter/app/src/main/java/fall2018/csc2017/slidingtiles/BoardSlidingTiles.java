@@ -21,9 +21,18 @@ public class BoardSlidingTiles extends Board implements Serializable, Iterable<T
      */
     private int blankCol;
 
+    /**
+     * Return the row position of the blank column.
+     * @return int row position of blank column
+     */
     public int getBlankRow() {
         return blankRow;
     }
+
+    /**
+     * Return the col position of the blank column.
+     * @return int col position of blank column
+     */
 
     public int getBlankCol() {
         return blankCol;

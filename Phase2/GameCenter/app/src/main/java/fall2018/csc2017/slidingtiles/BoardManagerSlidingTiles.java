@@ -1,7 +1,5 @@
 package fall2018.csc2017.slidingtiles;
 
-import android.service.quicksettings.Tile;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,14 +8,7 @@ import java.util.List;
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
  */
-class BoardManagerSlidingTiles implements Serializable {
-
-    public int size = BoardSlidingTiles.NUM_COLS;
-
-    /**
-     * The board being managed.
-     */
-    private BoardSlidingTiles board;
+class BoardManagerSlidingTiles extends BoardManager implements Serializable {
 
     /**
      * The sequence of moves made.
@@ -167,20 +158,12 @@ class BoardManagerSlidingTiles implements Serializable {
         BoardManagerSlidingTiles.numMoves = numMoves;
     }
 
-
-    /**
-     * Return the current board.
-     */
-    BoardSlidingTiles getBoard() {
-        return board;
-    }
-
     /**
      * Return whether the tiles are in row-major order.
      *
      * @return whether the tiles are in row-major order
      */
-    boolean puzzleSolved() {
+    boolean gameWon() {
         int index = 1;
         for (fall2018.csc2017.slidingtiles.Tile t : this.board) {
             if (t.getId() != index) {
@@ -224,9 +207,10 @@ class BoardManagerSlidingTiles implements Serializable {
         int col = position % BoardSlidingTiles.NUM_COLS;
         if (this.isValidTap(position)) {
             //add the position of the blank tile for undo move
-            this.moves.add(this.board.getBlankRow());
-            this.moves.add(this.board.getBlankCol());
-            this.board.swapTiles(this.board.getBlankRow(), this.board.getBlankCol(), row, col);
+            this.moves.add(((BoardSlidingTiles) this.board).getBlankRow());
+            this.moves.add(((BoardSlidingTiles) this.board).getBlankCol());
+            ((BoardSlidingTiles)this.board).swapTiles(((BoardSlidingTiles)this.board).getBlankRow(),
+                    ((BoardSlidingTiles) this.board).getBlankCol(), row, col);
             if (this.undosLeft < maxUndos) {
                 this.undosLeft++;
             }
@@ -242,7 +226,8 @@ class BoardManagerSlidingTiles implements Serializable {
         if (unlimitedMoves || undosLeft > 0) {
             int colUndo = this.moves.remove(this.moves.size() - 1);
             int rowUndo = this.moves.remove(this.moves.size() - 1);
-            this.board.swapTiles(this.board.getBlankRow(), this.board.getBlankCol(),
+            ((BoardSlidingTiles) this.board).swapTiles(((BoardSlidingTiles) this.board).getBlankRow(),
+                    ((BoardSlidingTiles) this.board).getBlankCol(),
                     rowUndo, colUndo);
             if (!unlimitedMoves) {
                 undosLeft--;

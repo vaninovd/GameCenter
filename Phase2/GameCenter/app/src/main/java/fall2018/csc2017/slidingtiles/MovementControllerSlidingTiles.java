@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.Toast;
 
 import static fall2018.csc2017.slidingtiles.BoardManagerSlidingTiles.getNumMoves;
-//TODO: JAVADOCS
 
 public class MovementControllerSlidingTiles {
 
@@ -27,7 +26,7 @@ public class MovementControllerSlidingTiles {
         if (boardManager.isValidTap(position)) {
             BoardManagerSlidingTiles.setNumMoves(getNumMoves() + 1);
             boardManager.touchMove(position);
-            if (boardManager.puzzleSolved()) {
+            if (boardManager.gameWon()) {
                 Toast.makeText(context, "YOU WIN! Check out the LEADERBOARD!", Toast.LENGTH_SHORT).show();
                 String username = UserManager.currentUser;
                 User curruser = LoginActivity.users.getUser(username);

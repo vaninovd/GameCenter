@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * The sliding tiles board.
+ * The Flip Card board.
  */
 public class BoardFC extends Board implements Serializable, Iterable<Tile> {
 
@@ -28,15 +28,10 @@ public class BoardFC extends Board implements Serializable, Iterable<Tile> {
         }
     }
 
-    TileFC getTile(int position) {
-        if (position < 0 || position > 36) {
-            position = 0;
-        }
-        int row = position / BoardFC.NUM_ROWS;
-        int col = position % BoardFC.NUM_COLS;
-        return (TileFC) tiles[row][col];
-    }
-
+    /**
+     * Show the blank side of the tile to the user.
+     * @param position of the tile
+     */
     public void showBlank(int position) {
         if (position < 0 || position > 36) {
             position = 0;
@@ -45,6 +40,11 @@ public class BoardFC extends Board implements Serializable, Iterable<Tile> {
         int col = position % BoardFC.NUM_COLS;
         ((TileFC)tiles[row][col]).showBlank();
     }
+
+    /**
+     * Show the picture side of the tile to the user.
+     * @param position of the tile
+     */
 
     public void showPicture(int position) {
         if (position < 0 || position > 36) {
