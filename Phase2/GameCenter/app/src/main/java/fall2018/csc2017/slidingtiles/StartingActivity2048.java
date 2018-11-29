@@ -39,7 +39,7 @@ public class StartingActivity2048 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         boardManager = new BoardManager2048();
         saveToFile(TEMP_SAVE_FILENAME);
-
+        System.out.println(LoginActivity.users.getCurrentUser());
         setContentView(R.layout.activity_starting_2048);
         addStartButtonListener();
         addLoadButtonListener();

@@ -39,7 +39,7 @@ public class StartingActivityFC extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         boardManager = new BoardManagerFC();
         saveToFile(TEMP_SAVE_FILENAME);
-
+        System.out.println(LoginActivity.users.getCurrentUser());
         setContentView(R.layout.activity_starting_flip_card);
         addStartButtonListener();
         addLoadButtonListener();

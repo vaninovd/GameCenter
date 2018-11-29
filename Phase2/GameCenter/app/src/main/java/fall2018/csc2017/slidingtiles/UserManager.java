@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class UserManager implements Serializable {
     private ArrayList<User> users;
     private HashMap<String, String> credentials;
-    public static String currentUser;
+    public String currentUser;
 
     public UserManager () {
         this.users = new ArrayList<>();
@@ -67,14 +67,14 @@ public class UserManager implements Serializable {
      * Sets the current logged in user.
      * @param username the username of the user.
      */
-    public void setCurrentUser(String username) {currentUser = username;}
+    public void setCurrentUser(String username) {this.currentUser = username;}
 
     /**
      * Returns the current active user.
      * @return returns the current user.
      */
-    public static String getCurrentUser() {
-        return currentUser;
+    public String getCurrentUser() {
+        return this.currentUser;
     }
 
     /**

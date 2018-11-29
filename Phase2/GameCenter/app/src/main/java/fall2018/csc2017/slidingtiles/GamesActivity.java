@@ -10,6 +10,8 @@ public class GamesActivity extends AppCompatActivity {
 
     public static String currGame;
 
+    public static UserManager users;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

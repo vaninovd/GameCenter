@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     makeNoAccountToast();
                 } else if (users.checkCredentials(username.getText().toString(), pass.getText().toString())) {
                     users.setCurrentUser(username.getText().toString());
-                    setSaveFilename(UserManager.getCurrentUser());
+                    setSaveFilename(users.getCurrentUser());
                     switchToGamesActivity();
 //                    switchToSlidingTiles();
                 } else {
@@ -172,6 +172,8 @@ public class LoginActivity extends AppCompatActivity {
         StartingActivitySlidingTiles.SAVE_FILENAME_SLIDING_TILES = filename + "SlidingTiles.ser";
         StartingActivityFC.SAVE_FILENAME_FC = filename + "FC.ser";
         StartingActivity2048.SAVE_FILENAME_2048 = filename + "2048.ser";
+        StartingActivityFC.TEMP_SAVE_FILENAME = filename + "FC_temp.ser";
+        StartingActivity2048.TEMP_SAVE_FILENAME = filename + "2048_temp.ser";
         StartingActivitySlidingTiles.TEMP_SAVE_FILENAME = filename + "_temp.ser";
     }
 }

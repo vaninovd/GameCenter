@@ -18,7 +18,7 @@ public class MovementController2048 {
     }
 
     public void recordScore() {
-        String username = UserManager.currentUser;
+        String username = LoginActivity.users.getCurrentUser();
         User curruser = LoginActivity.users.getUser(username);
         int score = Board2048.getScore();
         curruser.addScore(StartingActivity2048.name, score);
