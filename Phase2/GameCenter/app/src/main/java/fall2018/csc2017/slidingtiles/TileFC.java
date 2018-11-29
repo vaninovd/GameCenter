@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * A TileFC in a sliding tiles puzzle.
  */
-public class TileFC extends Tile implements Comparable<Tile>, Serializable {
+public class TileFC extends Tile implements Serializable {
 
     /**
      * Indicates whether the tile is up or down

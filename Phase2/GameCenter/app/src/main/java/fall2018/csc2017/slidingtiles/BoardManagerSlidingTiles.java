@@ -182,7 +182,7 @@ class BoardManagerSlidingTiles implements Serializable {
      */
     boolean puzzleSolved() {
         int index = 1;
-        for (TileSlidingTiles t : this.board) {
+        for (fall2018.csc2017.slidingtiles.Tile t : this.board) {
             if (t.getId() != index) {
                 return false;
             }
@@ -203,10 +203,10 @@ class BoardManagerSlidingTiles implements Serializable {
         int col = position % BoardSlidingTiles.NUM_COLS;
         int blankId = board.numTiles();
         // Are any of the 4 the blank tile?
-        TileSlidingTiles above = row == 0 ? null : board.getTile(row - 1, col);
-        TileSlidingTiles below = row == BoardSlidingTiles.NUM_ROWS - 1 ? null : board.getTile(row + 1, col);
-        TileSlidingTiles left = col == 0 ? null : board.getTile(row, col - 1);
-        TileSlidingTiles right = col == BoardSlidingTiles.NUM_COLS - 1 ? null : board.getTile(row, col + 1);
+        TileSlidingTiles above = row == 0 ? null : (TileSlidingTiles) board.getTile(row - 1, col);
+        TileSlidingTiles below = row == BoardSlidingTiles.NUM_ROWS - 1 ? null : (TileSlidingTiles)board.getTile(row + 1, col);
+        TileSlidingTiles left = col == 0 ? null : (TileSlidingTiles)board.getTile(row, col - 1);
+        TileSlidingTiles right = col == BoardSlidingTiles.NUM_COLS - 1 ? null : (TileSlidingTiles)board.getTile(row, col + 1);
         return (below != null && below.getId() == blankId)
                 || (above != null && above.getId() == blankId)
                 || (left != null && left.getId() == blankId)

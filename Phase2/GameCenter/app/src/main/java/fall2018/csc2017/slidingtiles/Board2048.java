@@ -12,17 +12,7 @@ import java.util.Random;
 /**
  * The 2048 board.
  */
-public class Board2048 extends Observable implements Serializable, Iterable<Tile2048> {
-
-    /**
-     * The number of rows in BoardSlidingTiles.
-     */
-    static int NUM_ROWS = 4;
-
-    /**
-     * The number of rows.
-     */
-    static int NUM_COLS = 4;
+public class Board2048 extends Board implements Serializable, Iterable<Tile> {
 
     /**
      * Score count
@@ -38,13 +28,6 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
      * Value added after a successful move with merges (sum of all tiles merged)
      */
     private static int scoreAdded;
-
-    /**
-     * The tiles on the board in row-major order.
-     */
-    public Tile2048[][] tiles = new Tile2048[NUM_ROWS][NUM_COLS];
-
-
 
     /**
      * A new board of tiles in row-major order.
@@ -106,12 +89,11 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
      * @return the tile at (row, col)
      */
     Tile2048 getTile(int row, int col) {
-        return tiles[row][col];
+        return (Tile2048) tiles[row][col];
     }
 
-    public Tile2048[][] makeTempCopy(Tile2048[][] tiles) {
-        //        Tile2048[][] temp = System.arraycopy(tiles);
-        Tile2048[][] temp = new Tile2048[NUM_ROWS][NUM_COLS];
+    public Tile[][] makeTempCopy(Tile[][] tiles) {
+        Tile[][] temp = new Tile[NUM_ROWS][NUM_COLS];
         for (int row = 0; row < Board2048.NUM_ROWS; row++) {
             for (int col = 0; col < Board2048.NUM_COLS; col++) {
                 temp[row][col] = tiles[row][col];
@@ -123,13 +105,13 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
      * Merges tiles together when a left swipe is initiated
      */
     public void mergeLeft() {
-        Tile2048[][] temp1 = makeTempCopy(tiles);
+        Tile[][] temp1 = makeTempCopy(tiles);
         pushLeft();
         int tempAdded = score;
         for (int row = 0; row != Board2048.NUM_ROWS; row++) {
             for (int col = 1; col != Board2048.NUM_COLS; col++) {
-                Tile2048 prevTile = tiles[row][col - 1];
-                Tile2048 currTile = tiles[row][col];
+                Tile2048 prevTile = getTile(row, col-1);
+                Tile2048 currTile = getTile(row, col);
                 if (prevTile.getId() == currTile.getId() & prevTile.getId() != 0) {
                     tiles[row][col - 1] = new Tile2048(prevTile.getId() + 1);
                     tiles[row][col] = new Tile2048(0);
@@ -156,7 +138,7 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
             for (int col = 0; col < Board2048.NUM_COLS; col++) {
                 // if it's not a blank tile
                 if (tiles[row][col].getId() != 0) {
-                    Tile2048 tempTile = tiles[row][farthest];
+                    Tile2048 tempTile = getTile(row, farthest);
                     // swap the tiles
                     tiles[row][farthest] = tiles[row][col];
                     tiles[row][col] = tempTile;
@@ -170,13 +152,13 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
      * Merges tiles together when a right swipe is intitiated
      */
     public void mergeRight() {
-        Tile2048[][] temp1 = makeTempCopy(tiles);
+        Tile[][] temp1 = makeTempCopy(tiles);
         pushRight();
         int tempAdded = score;
         for (int row = 0; row < Board2048.NUM_ROWS; row++) {
             for (int col = tiles[row].length - 2; col >= 0; col--) {
-                Tile2048 prevTile = tiles[row][col + 1];
-                Tile2048 currTile = tiles[row][col];
+                Tile2048 prevTile = getTile(row, col+1);
+                Tile2048 currTile = getTile(row, col);
                 if (prevTile.getId() == currTile.getId() & prevTile.getId() != 0) {
                     tiles[row][col + 1] = new Tile2048(prevTile.getId()+1);
                     tiles[row][col] = new Tile2048(0);
@@ -203,7 +185,7 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
             int farthest = tiles[row].length-1;
             for (int col = tiles[row].length - 1; col >= 0; col--) {
                 if (tiles[row][col].getId() != 0) {
-                    Tile2048 tempTile = tiles[row][farthest];
+                    Tile2048 tempTile = getTile(row, farthest);
                     tiles[row][farthest] = tiles[row][col];
                     tiles[row][col] = tempTile;
                     farthest--;
@@ -216,13 +198,13 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
      * Merges tiles together when a upwards swipe is intitiated
      */
     public void mergeUp() {
-        Tile2048[][] temp1 = makeTempCopy(tiles);
+        Tile[][] temp1 = makeTempCopy(tiles);
         pushUp();
         int tempAdded = score;
         for (int col = 0; col < Board2048.NUM_COLS; col++) {
             for (int row = 1; row < Board2048.NUM_ROWS; row++) {
-                Tile2048 prevTile = tiles[row - 1][col];
-                Tile2048 currTile = tiles[row][col];
+                Tile2048 prevTile = getTile(row-1, col);
+                Tile2048 currTile = getTile(row, col);
                 if (prevTile.getId() == currTile.getId() & prevTile.getId() != 0) {
                     tiles[row-1][col] = new Tile2048(prevTile.getId()+1);
                     tiles[row][col] = new Tile2048(0);
@@ -248,7 +230,7 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
             int farthest = 0;
             for (int row = 0; row < Board2048.NUM_ROWS; row++) {
                 if (tiles[row][col].getId() != 0) {
-                    Tile2048 tempTile = tiles[farthest][col];
+                    Tile2048 tempTile = getTile(farthest, col);
                     tiles[farthest][col] = tiles[row][col];
                     tiles[row][col] = tempTile;
                     farthest++;
@@ -262,14 +244,14 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
      */
     public void mergeDown() {
         // make a copy of the current state as to not mutate it
-        Tile2048[][] temp1 = makeTempCopy(tiles);
+        Tile[][] temp1 = makeTempCopy(tiles);
         numMoves += 1;
         pushDown();
         int tempAdded = score;
         for (int col = 0; col < Board2048.NUM_COLS; col++) {
             for (int row = Board2048.NUM_ROWS - 2; row >= 0; row--) {
-                Tile2048 prevTile = tiles[row + 1][col];
-                Tile2048 currTile = tiles[row][col];
+                Tile2048 prevTile = getTile(row+1, col);
+                Tile2048 currTile = getTile(row, col);
                 if (prevTile.getId() == currTile.getId() & prevTile.getId() != 0) {
                     tiles[row+1][col] = new Tile2048(prevTile.getId() + 1);
                     tiles[row][col] = new Tile2048(0);
@@ -303,8 +285,8 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
             int farthest = Board2048.NUM_ROWS - 1;
             for (int row = Board2048.NUM_ROWS - 1; row >= 0; row--) {
                 if (tiles[row][col].getId() != 0) {
-                    Tile2048 tempTile = tiles[farthest][col];
-                    tiles[farthest][col] = tiles[row][col];
+                    Tile2048 tempTile = getTile(farthest, col);
+                    tiles[farthest][col] = getTile(row, col);
                     tiles[row][col] = tempTile;
                     farthest--;
                 }
@@ -328,7 +310,7 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
     /**
      * Helper method for checking if a new tile should be spawned
      */
-    private boolean isSpawnable (Tile2048[][] temp1, Tile2048[][] tiles) {
+    private boolean isSpawnable (Tile[][] temp1, Tile[][] tiles) {
         for (int row = 0; row < Board2048.NUM_ROWS; row++) {
             for (int col = 0; col < Board2048.NUM_COLS; col++) {
                 if (temp1[row][col].getId() != tiles[row][col].getId()) {
@@ -440,51 +422,14 @@ public class Board2048 extends Observable implements Serializable, Iterable<Tile
     }
 
     /**
-     * Return an iterator for this BoardSlidingTiles.
+     * Return an iterator for this BoardFC.
      *
-     * @return iterator for this BoardSlidingTiles.
+     * @return iterator for this BoardFC.
      */
     @NonNull
-    public Iterator<Tile2048> iterator() {
-        return new TileIterator(this.tiles);
+    public Iterator<Tile> iterator() {
+        return new IteratorTile(this.tiles);
     }
 
-    /**
-     * Iterator for BoardSlidingTiles. Iterates over the tiles on the board in row major order.
-     */
-    public class TileIterator implements Iterator<Tile2048> {
 
-        private int row;
-
-        private int col;
-
-        private Tile2048[][] tiles;
-
-        TileIterator(Tile2048[][] tiles) {
-            this.row = 0;
-            this.col = 0;
-            this.tiles = tiles;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return !(row == Board2048.NUM_ROWS);
-        }
-
-        @Override
-        public Tile2048 next() {
-            Tile2048 returnTile = this.tiles[row][col];
-            boolean colInvalid = col == Board2048.NUM_COLS - 1;
-            if (!hasNext()) {
-                throw new NoSuchElementException("At the end of the 2048 board!");
-            }
-            if (colInvalid) {
-                col = 0;
-                row++;
-            } else {
-                col++;
-            }
-            return returnTile;
-        }
-    }
 }

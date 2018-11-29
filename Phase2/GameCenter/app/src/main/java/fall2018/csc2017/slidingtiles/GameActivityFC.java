@@ -84,7 +84,7 @@ public class GameActivityFC extends AppCompatActivity implements Observer {
         gridView.setNumColumns(BoardFC.NUM_COLS);
         gridView.setBoardManagerFC(boardManager);
         boardManager.getBoardFC().addObserver(this);
-        for (TileFC t: boardManager.getBoardFC()) {
+        for (Tile t: boardManager.getBoardFC()) {
             t.addObserver(this);
         }
         // Observer sets up desired dimensions as well as calls our display function
@@ -122,7 +122,7 @@ public class GameActivityFC extends AppCompatActivity implements Observer {
      * @param context the context
      */
     private void createTileButtons(Context context) {
-        BoardFC boardFC = boardManager.getBoardFC();
+        BoardFC boardFC = (BoardFC) boardManager.getBoardFC();
         tileButtons = new ArrayList<>();
         for (int row = 0; row != BoardFC.NUM_ROWS; row++) {
             for (int col = 0; col != BoardFC.NUM_COLS; col++) {
@@ -149,7 +149,7 @@ public class GameActivityFC extends AppCompatActivity implements Observer {
      * Update the backgrounds on the buttons to match the tiles.
      */
     private void updateTileButtons() {
-        BoardFC boardFC = boardManager.getBoardFC();
+        BoardFC boardFC = (BoardFC) boardManager.getBoardFC();
         int nextPos = 0;
         for (Button b : tileButtons) {
             int row = nextPos / BoardFC.NUM_ROWS;

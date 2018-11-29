@@ -83,7 +83,7 @@ class BoardManagerFC implements Serializable {
     /**
      * Return the current boardFC.
      */
-    BoardFC getBoardFC() {
+    Board getBoardFC() {
         return boardFC;
     }
 
@@ -93,8 +93,9 @@ class BoardManagerFC implements Serializable {
      * @return whether the tiles are in row-major order
      */
     boolean puzzleSolved() {
-        for (TileFC t : this.boardFC) {
-            if (!t.isUp()) {
+        for (Tile t : this.boardFC) {
+            TileFC m = (TileFC) t;
+            if (!m.isUp()) {
                 return false;
             }
         }
