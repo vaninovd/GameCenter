@@ -104,9 +104,8 @@ class BoardManagerSlidingTiles extends BoardManager implements Serializable {
             for (int j = i + 1; j < tiles.size(); j++) {
                 if (tiles.get(i).getBackground() != R.drawable.tile_def &&
                         tiles.get(j).getBackground() != R.drawable.tile_def) {
-                    if (tiles.get(j).getId() > tiles.get(i).getId()) {
+                    if (tiles.get(i).getId() > tiles.get(j).getId())
                         inversions++;
-                    }
                 }
             }
         }
@@ -121,7 +120,7 @@ class BoardManagerSlidingTiles extends BoardManager implements Serializable {
      * @param tiles the tiles
      * @return boolean
      */
-    private boolean checkSolvableForEvenWidthHelper(List<TileSlidingTiles> tiles) {
+    public boolean checkSolvableForEvenWidthHelper(List<TileSlidingTiles> tiles) {
         boolean evenInversion = evenNumOfInversions(tiles);
         boolean blankOddRow = blankOnOddRow(tiles);
         return evenInversion == blankOddRow;
@@ -135,7 +134,7 @@ class BoardManagerSlidingTiles extends BoardManager implements Serializable {
      */
     public boolean blankOnOddRow(List<TileSlidingTiles> tiles) {
         int i = 0;
-        int blankId = board.numTiles();
+        int blankId = Board.NUM_ROWS * Board.NUM_ROWS;
         for (TileSlidingTiles tile : tiles) {
             if (tile.getId() == blankId)
                 break;
@@ -188,9 +187,9 @@ class BoardManagerSlidingTiles extends BoardManager implements Serializable {
         int blankId = board.numTiles();
         // Are any of the 4 the blank tile?
         TileSlidingTiles above = row == 0 ? null : (TileSlidingTiles) board.getTile(row - 1, col);
-        TileSlidingTiles below = row == BoardSlidingTiles.NUM_ROWS - 1 ? null : (TileSlidingTiles)board.getTile(row + 1, col);
-        TileSlidingTiles left = col == 0 ? null : (TileSlidingTiles)board.getTile(row, col - 1);
-        TileSlidingTiles right = col == BoardSlidingTiles.NUM_COLS - 1 ? null : (TileSlidingTiles)board.getTile(row, col + 1);
+        TileSlidingTiles below = row == BoardSlidingTiles.NUM_ROWS - 1 ? null : (TileSlidingTiles) board.getTile(row + 1, col);
+        TileSlidingTiles left = col == 0 ? null : (TileSlidingTiles) board.getTile(row, col - 1);
+        TileSlidingTiles right = col == BoardSlidingTiles.NUM_COLS - 1 ? null : (TileSlidingTiles) board.getTile(row, col + 1);
         return (below != null && below.getId() == blankId)
                 || (above != null && above.getId() == blankId)
                 || (left != null && left.getId() == blankId)
@@ -201,7 +200,7 @@ class BoardManagerSlidingTiles extends BoardManager implements Serializable {
      * Return the current board.
      */
     Board getBoardST() {
-        return (BoardSlidingTiles)this.board;
+        return (BoardSlidingTiles) this.board;
     }
 
     /**
@@ -217,7 +216,7 @@ class BoardManagerSlidingTiles extends BoardManager implements Serializable {
             //add the position of the blank tile for undo move
             this.moves.add(((BoardSlidingTiles) this.board).getBlankRow());
             this.moves.add(((BoardSlidingTiles) this.board).getBlankCol());
-            ((BoardSlidingTiles)this.board).swapTiles(((BoardSlidingTiles)this.board).getBlankRow(),
+            ((BoardSlidingTiles) this.board).swapTiles(((BoardSlidingTiles) this.board).getBlankRow(),
                     ((BoardSlidingTiles) this.board).getBlankCol(), row, col);
             if (this.undosLeft < maxUndos) {
                 this.undosLeft++;
@@ -249,7 +248,7 @@ class BoardManagerSlidingTiles extends BoardManager implements Serializable {
     /**
      * Return the number of Moves made
      */
-    public int getSizeMoves(){
+    public int getSizeMoves() {
         return this.moves.size();
     }
 }

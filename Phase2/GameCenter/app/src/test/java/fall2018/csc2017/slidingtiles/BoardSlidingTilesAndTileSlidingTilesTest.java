@@ -217,6 +217,91 @@ public class BoardSlidingTilesAndTileSlidingTilesTest {
     }
 
     /**
+     * Test whether checkSolvableForEvenWidthHelper works.
+     */
+    @Test
+    public void testCheckSolvableForEvenWidthHelper() {
+        setUpCorrect(4);
+        updateArray();
+        assertEquals(true, boardManager.checkSolvableForEvenWidthHelper(arrayTiles));
+        ((BoardSlidingTiles)boardManager.getBoardST()).swapTiles(0, 0, 0, 1);
+        updateArray();
+        assertEquals(false, boardManager.checkSolvableForEvenWidthHelper(arrayTiles));
+
+        // 8  7  13 11
+        // 1  2  4  5
+        // 6  12 16 3
+        // 10 14 9  15
+        BoardSlidingTiles.NUM_COLS = 4;
+        List<TileSlidingTiles> testTiles = new ArrayList<>();
+        testTiles.add(new TileSlidingTiles(7));
+        testTiles.add(new TileSlidingTiles(6));
+        testTiles.add(new TileSlidingTiles(12));
+        testTiles.add(new TileSlidingTiles(10));
+        testTiles.add(new TileSlidingTiles(0));
+        testTiles.add(new TileSlidingTiles(1));
+        testTiles.add(new TileSlidingTiles(3));
+        testTiles.add(new TileSlidingTiles(4));
+        testTiles.add(new TileSlidingTiles(5));
+        testTiles.add(new TileSlidingTiles(11));
+        testTiles.add(new TileSlidingTiles(15));
+        testTiles.add(new TileSlidingTiles(2));
+        testTiles.add(new TileSlidingTiles(9));
+        testTiles.add(new TileSlidingTiles(13));
+        testTiles.add(new TileSlidingTiles(8));
+        testTiles.add(new TileSlidingTiles(14));
+        assertEquals(true, boardManager.checkSolvableForEvenWidthHelper(testTiles));
+
+        // 8  7  13 11
+        // 1  2  4  16
+        // 6  12 5  3
+        // 10 14 9  15
+        BoardSlidingTiles.NUM_COLS = 4;
+        List<TileSlidingTiles> testTiles2 = new ArrayList<>();
+        testTiles2.add(new TileSlidingTiles(7));
+        testTiles2.add(new TileSlidingTiles(6));
+        testTiles2.add(new TileSlidingTiles(12));
+        testTiles2.add(new TileSlidingTiles(10));
+        testTiles2.add(new TileSlidingTiles(0));
+        testTiles2.add(new TileSlidingTiles(1));
+        testTiles2.add(new TileSlidingTiles(3));
+        testTiles2.add(new TileSlidingTiles(15));
+        testTiles2.add(new TileSlidingTiles(5));
+        testTiles2.add(new TileSlidingTiles(11));
+        testTiles2.add(new TileSlidingTiles(4));
+        testTiles2.add(new TileSlidingTiles(2));
+        testTiles2.add(new TileSlidingTiles(9));
+        testTiles2.add(new TileSlidingTiles(13));
+        testTiles2.add(new TileSlidingTiles(8));
+        testTiles2.add(new TileSlidingTiles(14));
+        assertEquals(false, boardManager.checkSolvableForEvenWidthHelper(testTiles2));
+
+        // 8  4  13 9
+        // 5  14 11 3
+        // 2  1  15 6
+        // 10 12 7
+        BoardSlidingTiles.NUM_COLS = 4;
+        List<TileSlidingTiles> testTiles3 = new ArrayList<>();
+        testTiles3.add(new TileSlidingTiles(7));
+        testTiles3.add(new TileSlidingTiles(3));
+        testTiles3.add(new TileSlidingTiles(12));
+        testTiles3.add(new TileSlidingTiles(8));
+        testTiles3.add(new TileSlidingTiles(4));
+        testTiles3.add(new TileSlidingTiles(13));
+        testTiles3.add(new TileSlidingTiles(10));
+        testTiles3.add(new TileSlidingTiles(2));
+        testTiles3.add(new TileSlidingTiles(1));
+        testTiles3.add(new TileSlidingTiles(0));
+        testTiles3.add(new TileSlidingTiles(14));
+        testTiles3.add(new TileSlidingTiles(5));
+        testTiles3.add(new TileSlidingTiles(9));
+        testTiles3.add(new TileSlidingTiles(11));
+        testTiles3.add(new TileSlidingTiles(6));
+        testTiles3.add(new TileSlidingTiles(15));
+        assertEquals(true, boardManager.checkSolvableForEvenWidthHelper(testTiles3));
+    }
+
+    /**
      * Shuffle a few tiles.
      */
     private void swapFirstTwoTiles() {
