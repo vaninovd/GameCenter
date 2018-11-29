@@ -218,7 +218,7 @@ public class GameActivitySlidingTiles extends AppCompatActivity implements Obser
 
     @Override
     public void update(Observable o, Object arg) {
-        autoSave(StartingActivitySlidingTiles.SAVE_FILENAME);
+        autoSave(StartingActivitySlidingTiles.SAVE_FILENAME_SLIDING_TILES);
         display();
     }
 }

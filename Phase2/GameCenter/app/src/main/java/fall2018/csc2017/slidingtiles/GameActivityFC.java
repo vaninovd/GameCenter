@@ -221,7 +221,7 @@ public class GameActivityFC extends AppCompatActivity implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        autoSave(StartingActivityFC.SAVE_FILENAME);
+        autoSave(StartingActivityFC.SAVE_FILENAME_FC);
         display();
     }
 }

@@ -169,7 +169,9 @@ public class LoginActivity extends AppCompatActivity {
      * @param filename The filename we wish to change to.
      */
     public void setSaveFilename(String filename) {
-        StartingActivitySlidingTiles.SAVE_FILENAME = filename + ".ser";
+        StartingActivitySlidingTiles.SAVE_FILENAME_SLIDING_TILES = filename + "SlidingTiles.ser";
+        StartingActivityFC.SAVE_FILENAME_FC = filename + "FC.ser";
+        StartingActivity2048.SAVE_FILENAME_2048 = filename + "2048.ser";
         StartingActivitySlidingTiles.TEMP_SAVE_FILENAME = filename + "_temp.ser";
     }
 }

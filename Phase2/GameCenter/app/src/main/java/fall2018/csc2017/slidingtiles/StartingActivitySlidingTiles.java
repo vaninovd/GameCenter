@@ -23,7 +23,7 @@ public class StartingActivitySlidingTiles extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static String SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "SlidingTiles.ser";
+    public static String SAVE_FILENAME_SLIDING_TILES = LoginActivity.users.getCurrentUser() + "SlidingTiles.ser";
 
     /**
      * A temporary save file.
@@ -86,7 +86,7 @@ public class StartingActivitySlidingTiles extends AppCompatActivity {
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFromFile(SAVE_FILENAME);
+                loadFromFile(SAVE_FILENAME_SLIDING_TILES);
                 saveToFile(TEMP_SAVE_FILENAME);
                 if (boardManager != null) {
                     makeToastLoadedText();
@@ -113,7 +113,7 @@ public class StartingActivitySlidingTiles extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveToFile(SAVE_FILENAME);
+                saveToFile(SAVE_FILENAME_SLIDING_TILES);
                 saveToFile(TEMP_SAVE_FILENAME);
                 makeToastSavedText();
             }

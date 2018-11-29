@@ -208,7 +208,7 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        autoSave(StartingActivity2048.SAVE_FILENAME);
+        autoSave(StartingActivity2048.SAVE_FILENAME_2048);
         display();
         Toast.makeText(this, "+" + Integer.toString(Board2048.getScoreAdded()), Toast.LENGTH_SHORT).show();
     }
