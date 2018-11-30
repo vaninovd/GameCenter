@@ -19,22 +19,13 @@ public class TestBoardFC {
         this.board = new BoardFC(tiles);
     }
 
-    public void tearDown() {
-        List<TileFC> tiles = new ArrayList<>();
-        final int numTiles = BoardFC.NUM_ROWS * BoardFC.NUM_COLS;
-        for (int tileNum = 0; tileNum != numTiles; tileNum++) {
-            tiles.add(new TileFC(tileNum));
-        }
-        this.board = new BoardFC(tiles);
-    }
-
     @Test
     public void testBoardShowBlank(){
         setUp();
         int testBlank = R.drawable.block_blank;
         board.showBlank(0);
         assertEquals(testBlank, board.tiles[0][0].background);
-        tearDown();
+        setUp();
     }
 
     @Test
@@ -44,7 +35,7 @@ public class TestBoardFC {
         board.tiles[0][0].background = R.drawable.block_blank;
         board.showPicture(0);
         assertEquals(testPicture, board.tiles[0][0].background);
-        tearDown();
+        setUp();
     }
 
     @Test
@@ -55,6 +46,6 @@ public class TestBoardFC {
             count++;
         }
         assertEquals(16, count);
-        tearDown();
+        setUp();
     }
 }
