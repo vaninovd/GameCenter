@@ -30,18 +30,6 @@ public class TileFC extends Tile implements Serializable {
             R.drawable.fc_js};
 
     /**
-     * A TileFC with id and background. The background may not have a corresponding image.
-     *
-     * @param id         the id
-     * @param background the background
-     */
-    TileFC(int id, int background) {
-        this.id = id;
-        this.background = background;
-
-    }
-
-    /**
      * A tile with a background id; look up and set the id.
      *
      * @param backgroundId
