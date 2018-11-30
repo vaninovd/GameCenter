@@ -28,8 +28,8 @@ public class MovementControllerFC {
             boardManagerFC.touchMove(position);
             if (boardManagerFC.gameWon()) {
                 Toast.makeText(context, "YOU WIN! Check out the LEADERBOARD!", Toast.LENGTH_SHORT).show();
-                String username = LoginActivity.users.getCurrentUser();
-                User curruser = LoginActivity.users.getUser(username);
+                String username = LoginActivity.usersManager.getCurrentUser();
+                User curruser = LoginActivity.usersManager.getUser(username);
                 int score = BoardManagerFC.getNumMoves();
                 curruser.addScore(StartingActivityFC.name, score);
             }

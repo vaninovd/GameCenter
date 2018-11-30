@@ -17,8 +17,6 @@ import android.widget.GridView;
 
 public class GestureDetectGridViewSlidingTiles extends GridView {
     public static final int SWIPE_MIN_DISTANCE = 100;
-    public static final int SWIPE_MAX_OFF_PATH = 100;
-    public static final int SWIPE_THRESHOLD_VELOCITY = 100;
     private GestureDetector gDetector;
     private MovementControllerSlidingTiles mController;
     private boolean mFlingConfirmed = false;
@@ -48,6 +46,10 @@ public class GestureDetectGridViewSlidingTiles extends GridView {
         init(context);
     }
 
+    /**
+     * The initial set up for the game's current context.
+     * @param context current context
+     */
     private void init(final Context context) {
         mController = new MovementControllerSlidingTiles();
         gDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
@@ -69,6 +71,11 @@ public class GestureDetectGridViewSlidingTiles extends GridView {
         });
     }
 
+    /**
+     * Logic for processing taps
+     * @param ev
+     * @return boolean
+     */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         int action = ev.getActionMasked();
@@ -96,13 +103,22 @@ public class GestureDetectGridViewSlidingTiles extends GridView {
         return super.onInterceptTouchEvent(ev);
     }
 
+    /**
+     * To handle a swipe event
+     * @param ev
+     * @return boolean
+     */
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         return gDetector.onTouchEvent(ev);
     }
 
-    public void setBoardManager(BoardManagerSlidingTiles boardManager) {
-        this.boardManager = boardManager;
+    /**
+     * Sets the board manager to current board manager.
+     * @param boardmanager the boardmanager currently
+     */
+    public void setBoardManager(BoardManagerSlidingTiles boardmanager) {
+        this.boardManager = boardmanager;
         mController.setBoardManager(boardManager);
     }
 }

@@ -47,6 +47,10 @@ public class GestureDetectGridView2048 extends GridView {
         init(context);
     }
 
+    /**
+     * The initial set up for the game's current context.
+     * @param context current context
+     */
     private void init(final Context context) {
         mController = new MovementController2048();
         gDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
@@ -55,8 +59,6 @@ public class GestureDetectGridView2048 extends GridView {
             public boolean onSingleTapConfirmed(MotionEvent event) {
                 int position = GestureDetectGridView2048.this.pointToPosition
                         (Math.round(event.getX()), Math.round(event.getY()));
-
-                //mController.processTapMovement(context, position, true);
                 return true;
             }
 
@@ -68,6 +70,11 @@ public class GestureDetectGridView2048 extends GridView {
         });
     }
 
+    /**
+     * Logic for processing swipes
+     * @param ev
+     * @return boolean
+     */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         int action = ev.getActionMasked();

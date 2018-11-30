@@ -23,12 +23,12 @@ public class StartingActivitySlidingTiles extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static String SAVE_FILENAME_SLIDING_TILES = LoginActivity.users.getCurrentUser() + "SlidingTiles.ser";
+    public static String SAVE_FILENAME_SLIDING_TILES = LoginActivity.usersManager.getCurrentUser() + "SlidingTiles.ser";
 
     /**
      * A temporary save file.
      */
-    public static String TEMP_SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "SlidingTiles_temp.ser";
+    public static String TEMP_SAVE_FILENAME = LoginActivity.usersManager.getCurrentUser() + "SlidingTiles_temp.ser";
     /**
      * The board manager.
      */
