@@ -41,6 +41,8 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      */
     private ArrayList<Button> tileButtons;
 
+    long base;
+
     /**
      * Constants for swiping directions. Should be an enum, probably.
      */
@@ -170,13 +172,12 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      * @param fileName the name of the file
      */
     private void loadFromFile(String fileName) {
-
         try {
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
                 boardManager = (BoardManager2048) input.readObject();
-//                simpleChronometer.start();
+//                simpleChronometer.setBase(base);
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
@@ -194,11 +195,12 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      * @param fileName the name of the file
      */
     public void saveToFile(String fileName) {
-//        simpleChronometer.stop();
+        base = simpleChronometer.getBase();
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput(fileName, MODE_PRIVATE));
             outputStream.writeObject(boardManager);
+            outputStream.writeObject(Long.toString(base));
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
@@ -212,6 +214,7 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      */
     public void autoSave(String fileName){
         if (Board2048.getNumMoves() % 3 == 0) {
+            saveToFile(Long.toString(simpleChronometer.getBase()));
             saveToFile(fileName);
         }
     }
