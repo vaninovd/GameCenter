@@ -11,8 +11,10 @@ public class TestBoardFC {
     private BoardFC board;
 
     public void setUp() {
+        board.NUM_COLS = 4;
+        board.NUM_ROWS = 4;
         List<TileFC> tiles = new ArrayList<>();
-        final int numTiles = BoardFC.NUM_ROWS * BoardFC.NUM_COLS;
+        final int numTiles = board.NUM_ROWS * board.NUM_COLS;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
             tiles.add(new TileFC(tileNum));
         }
@@ -20,8 +22,10 @@ public class TestBoardFC {
     }
 
     public void tearDown() {
+        board.NUM_COLS = 4;
+        board.NUM_ROWS = 4;
         List<TileFC> tiles = new ArrayList<>();
-        final int numTiles = BoardFC.NUM_ROWS * BoardFC.NUM_COLS;
+        final int numTiles = board.NUM_ROWS * board.NUM_COLS;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
             tiles.add(new TileFC(tileNum));
         }
