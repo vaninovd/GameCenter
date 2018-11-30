@@ -88,4 +88,8 @@ public class UserManager implements Serializable {
             return credentials.get(username).equals(password);
         } else {return false;}
     }
+
+    public HashMap<String, String> getCredentials() {
+        return this.credentials;
+    }
 }

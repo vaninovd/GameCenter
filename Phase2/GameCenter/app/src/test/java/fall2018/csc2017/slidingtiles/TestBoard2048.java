@@ -133,7 +133,14 @@ public class TestBoard2048 {
                 new Tile2048(1),
                 new Tile2048(0),
                 new Tile2048(0)};
+        Tile2048[] blank = {new Tile2048(0),
+                new Tile2048(0),
+                new Tile2048(0),
+                new Tile2048(0)};
         this.board.tiles[0] = temp;
+        this.board.tiles[1] = blank;
+        this.board.tiles[2] = blank;
+        this.board.tiles[3] = blank;
         this.board.mergeRight();
         assertEquals(4, Board2048.getScore());
         tearDown();
