@@ -43,6 +43,8 @@ public class TestTileFC {
             tiles.add(new TileFC(tileNum));
         }
         this.board = new BoardFC(tiles);
+        BoardFC.NUM_COLS = 4;
+        BoardFC.NUM_ROWS = 4;
     }
 
     public void tearDown6X6() {
@@ -54,6 +56,8 @@ public class TestTileFC {
             tiles6x6.add(new TileFC(tileNum));
         }
         this.board6x6 = new BoardFC(tiles6x6);
+        BoardFC.NUM_COLS = 4;
+        BoardFC.NUM_ROWS = 4;
     }
 
     @Test

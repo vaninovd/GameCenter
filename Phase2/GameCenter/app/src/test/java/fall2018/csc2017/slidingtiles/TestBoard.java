@@ -18,12 +18,6 @@ public class TestBoard {
         Board.NUM_ROWS = size;
     }
 
-    private void tearDown() {
-        this.board = new Board();
-        Board.NUM_COLS = 0;
-        Board.NUM_ROWS = 0;
-    }
-
     @Test
     public void testGetTile() {
         setUp(4);
@@ -33,7 +27,6 @@ public class TestBoard {
         assertEquals(this.board.getTile(0), newTile);
         assertEquals(this.board.getTile(0, 0), newTile);
         assertEquals(newTile, this.board.getTile(-1));
-        tearDown();
     }
 
     @Test
@@ -43,7 +36,6 @@ public class TestBoard {
                 "tiles=" + Arrays.toString(this.board.tiles) +
                 '}';
         assertEquals(expected, this.board.toString());
-        tearDown();
     }
 
     @Test
@@ -55,6 +47,5 @@ public class TestBoard {
             count++;
         }
         assertEquals(16, count);
-        tearDown();
     }
 }

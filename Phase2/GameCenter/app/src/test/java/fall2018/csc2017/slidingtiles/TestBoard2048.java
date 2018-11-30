@@ -12,10 +12,6 @@ public class TestBoard2048 {
 
     public void setUp() {
         this.board = new Board2048();
-    }
-
-    public void tearDown() {
-        this.board = new Board2048();
         Board2048.resetScore();
         Board2048.resetNumMoves();
         Board2048.resetScoreAdded();
@@ -32,7 +28,6 @@ public class TestBoard2048 {
         this.board.mergeLeft();
         boolean exp = (this.board.tiles[0][0].getId() == 2);
         assertTrue(exp);
-        tearDown();
     }
 
     @Test
@@ -46,7 +41,6 @@ public class TestBoard2048 {
         boolean exp = (this.board.tiles[0][0].getId() == 2) &
                       (this.board.tiles[1][0].getId() == 2);
         assertTrue(exp);
-        tearDown();
     }
 
     @Test
@@ -60,7 +54,6 @@ public class TestBoard2048 {
         this.board.mergeRight();
         boolean exp = (this.board.tiles[0][3].getId() == 2);
         assertTrue(exp);
-        tearDown();
     }
 
     @Test
@@ -74,7 +67,6 @@ public class TestBoard2048 {
         boolean exp = (this.board.tiles[2][0].getId() == 2) &
                       (this.board.tiles[3][0].getId() == 2);
         assertTrue(exp);
-        tearDown();
     }
 
     @Test
@@ -83,7 +75,6 @@ public class TestBoard2048 {
         Tile2048 exp = new Tile2048(0);
         board.tiles[0][0] = exp;
         assertEquals(exp, board.getTile(0, 0));
-        tearDown();
     }
 
     @Test
@@ -91,7 +82,6 @@ public class TestBoard2048 {
         setUp();
         Tile[][] copy = board.makeTempCopy(board.tiles);
         assertNotEquals(copy, this.board);
-        tearDown();
     }
 
     @Test
@@ -112,7 +102,6 @@ public class TestBoard2048 {
         }
         this.board.tiles = newTiles;
         assertTrue(this.board.isStuck());
-        tearDown();
     }
 
     @Test
@@ -123,7 +112,6 @@ public class TestBoard2048 {
             count++;
         }
         assertEquals(16, count);
-        tearDown();
     }
 
     @Test
@@ -143,7 +131,6 @@ public class TestBoard2048 {
         this.board.tiles[3] = blank;
         this.board.mergeRight();
         assertEquals(4, Board2048.getScore());
-        tearDown();
     }
 
     @Test
@@ -157,7 +144,6 @@ public class TestBoard2048 {
         this.board.mergeRight();
         Board2048.resetScore();
         assertEquals(0, Board2048.getScore());
-        tearDown();
     }
 
     @Test
@@ -167,10 +153,16 @@ public class TestBoard2048 {
                 new Tile2048(1),
                 new Tile2048(0),
                 new Tile2048(0)};
+        Tile2048[] blank = {new Tile2048(0),
+                new Tile2048(0),
+                new Tile2048(0),
+                new Tile2048(0)};
         this.board.tiles[0] = temp;
+        this.board.tiles[1] = blank;
+        this.board.tiles[2] = blank;
+        this.board.tiles[3] = blank;
         this.board.mergeRight();
         assertEquals(4, Board2048.getScoreAdded());
-        tearDown();
     }
 
     @Test
@@ -183,7 +175,6 @@ public class TestBoard2048 {
         this.board.tiles[0] = temp;
         this.board.mergeRight();
         assertEquals(1, Board2048.getNumMoves());
-        tearDown();
     }
 
     @Test
@@ -197,6 +188,6 @@ public class TestBoard2048 {
         this.board.mergeRight();
         Board2048.resetNumMoves();
         assertEquals(0, Board2048.getNumMoves());
-        tearDown();
+        setUp();
     }
 }
