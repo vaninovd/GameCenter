@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,12 +23,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
-//TODO: JAVADOCS AND AUTOSAVE
+
 
 /**
  * The game activity.
  */
 public class GameActivity2048 extends AppCompatActivity implements Observer {
+
 
     /**
      * The board manager.
@@ -50,6 +52,8 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
     // Grid View and calculated column height and width based on device size
     private GestureDetectGridView2048 gridView;
     private static int columnWidth, columnHeight;
+
+    Chronometer simpleChronometer;
 
     /**
      * Set up the background image for each button based on the master list
@@ -83,6 +87,12 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
         gridView.setNumColumns(Board2048.NUM_COLS);
         gridView.setBoardManager(boardManager);
         boardManager.getBoard().addObserver(this);
+
+        simpleChronometer = (Chronometer) findViewById(R.id.simpleChronometer);
+        simpleChronometer.start();
+        simpleChronometer.setFormat("Time Spent - %s");
+
+
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -151,6 +161,7 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
     protected void onPause() {
         super.onPause();
         saveToFile(StartingActivity2048.TEMP_SAVE_FILENAME);
+        simpleChronometer.stop();
     }
 
     /**
@@ -165,6 +176,7 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
                 boardManager = (BoardManager2048) input.readObject();
+//                simpleChronometer.start();
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
@@ -182,6 +194,7 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      * @param fileName the name of the file
      */
     public void saveToFile(String fileName) {
+//        simpleChronometer.stop();
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput(fileName, MODE_PRIVATE));

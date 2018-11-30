@@ -19,7 +19,7 @@ public class MainListView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_list_view);
         ArrayList<User> usersList;
-        usersList = LoginActivity.users.getUserList();
+        usersList = LoginActivity.usersManager.getUserList();
 
         listView = (ListView) findViewById(R.id.list);
         adapter = new ScoreboardAdapter(this, usersList);

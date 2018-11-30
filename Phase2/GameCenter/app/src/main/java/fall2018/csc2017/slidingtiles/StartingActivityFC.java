@@ -23,12 +23,12 @@ public class StartingActivityFC extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static String SAVE_FILENAME_FC = LoginActivity.users.getCurrentUser() + "FC.ser";
+    public static String SAVE_FILENAME_FC = LoginActivity.usersManager.getCurrentUser() + "FC.ser";
 
     /**
      * A temporary save file.
      */
-    public static String TEMP_SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "FC_temp.ser";
+    public static String TEMP_SAVE_FILENAME = LoginActivity.usersManager.getCurrentUser() + "FC_temp.ser";
     /**
      * The board manager.
      */
@@ -39,7 +39,7 @@ public class StartingActivityFC extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         boardManager = new BoardManagerFC();
         saveToFile(TEMP_SAVE_FILENAME);
-        System.out.println(LoginActivity.users.getCurrentUser());
+        System.out.println(LoginActivity.usersManager.getCurrentUser());
         setContentView(R.layout.activity_starting_flip_card);
         addStartButtonListener();
         addLoadButtonListener();

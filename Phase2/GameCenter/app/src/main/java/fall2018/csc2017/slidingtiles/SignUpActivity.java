@@ -42,14 +42,14 @@ public class SignUpActivity extends LoginActivity {
         EditText user = findViewById(R.id.userEntered);
         EditText pass = findViewById(R.id.passEntered);
         EditText confPass = findViewById(R.id.confirmPassEntered);
-        if (users.hasUser(user.getText().toString())) {
+        if (usersManager.hasUser(user.getText().toString())) {
             makeAccountExistsToast();
         } else if (user.getText().toString().length() < 5
                 || pass.getText().toString().length() < 5
                 || !pass.getText().toString().equals(confPass.getText().toString())) {
             makeValidCredentialsToast();
         } else {
-            users.addUser(user.getText().toString(), pass.getText().toString());
+            usersManager.addUser(user.getText().toString(), pass.getText().toString());
             saveToFile(USER_SAVE);
             makeAccountCreatedToast();
             switchToMain();
