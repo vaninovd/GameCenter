@@ -18,6 +18,7 @@ public class TestBoard2048 {
         this.board = new Board2048();
         Board2048.resetScore();
         Board2048.resetNumMoves();
+        Board2048.resetScoreAdded();
     }
 
     @Test

@@ -60,6 +60,7 @@ public class StartingActivity2048 extends AppCompatActivity {
                 boardManager = new BoardManager2048();
                 Board2048.resetScore();
                 Board2048.resetNumMoves();
+                Board2048.resetScoreAdded();
                 switchToGame();
             }
         });

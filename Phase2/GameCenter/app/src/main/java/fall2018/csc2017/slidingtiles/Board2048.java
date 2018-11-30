@@ -83,6 +83,7 @@ public class Board2048 extends Board implements Serializable, Iterable<Tile> {
      * @param col the tile column
      * @return the tile at (row, col)
      */
+    @Override
     Tile2048 getTile(int row, int col) {
         return (Tile2048) tiles[row][col];
     }
@@ -188,6 +189,10 @@ public class Board2048 extends Board implements Serializable, Iterable<Tile> {
                 }
             }
         }
+    }
+
+    public static void resetScoreAdded() {
+        scoreAdded = 0;
     }
 
     /**
