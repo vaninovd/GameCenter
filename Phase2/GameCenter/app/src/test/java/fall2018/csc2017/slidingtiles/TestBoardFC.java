@@ -50,7 +50,11 @@ public class TestBoardFC {
     @Test
     public void testBoardIterator(){
         setUp();
-
+        int count = 0;
+        for (Tile i : this.board) {
+            count++;
+        }
+        assertEquals(16, count);
         tearDown();
     }
 }
