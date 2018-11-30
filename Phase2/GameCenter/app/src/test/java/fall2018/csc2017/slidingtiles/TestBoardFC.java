@@ -21,7 +21,6 @@ public class TestBoardFC {
         this.board = new BoardFC(tiles);
     }
 
-<<<<<<< HEAD
     public void tearDown() {
         board.NUM_COLS = 4;
         board.NUM_ROWS = 4;
@@ -33,8 +32,6 @@ public class TestBoardFC {
         this.board = new BoardFC(tiles);
     }
 
-=======
->>>>>>> 3ab0db9bd177feb60fb327844d97cd887061f7b8
     @Test
     public void testBoardShowBlank(){
         setUp();
