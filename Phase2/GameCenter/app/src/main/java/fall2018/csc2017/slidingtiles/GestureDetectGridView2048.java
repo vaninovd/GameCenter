@@ -1,5 +1,4 @@
 package fall2018.csc2017.slidingtiles;
-//TODO: JAVADOCS
 
 /*
 Adapted from:
@@ -16,6 +15,9 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.GridView;
 
+/**
+ * Swipe detection logic for 2048.
+ */
 public class GestureDetectGridView2048 extends GridView {
     public static final int SWIPE_MIN_DISTANCE = 30;
     private GestureDetector gDetector;

@@ -89,6 +89,10 @@ public class UserManager implements Serializable {
         } else {return false;}
     }
 
+    /**
+     * Gets the user's login credentials in form of user, pass
+     * @return hashmap
+     */
     public HashMap<String, String> getCredentials() {
         return this.credentials;
     }

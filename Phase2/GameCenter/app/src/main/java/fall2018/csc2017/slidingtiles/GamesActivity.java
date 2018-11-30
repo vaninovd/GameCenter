@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * The main screen for game selection.
+ */
 public class GamesActivity extends AppCompatActivity {
 
     public static String currGame;

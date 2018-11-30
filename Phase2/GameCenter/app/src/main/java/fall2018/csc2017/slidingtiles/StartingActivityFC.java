@@ -197,11 +197,18 @@ public class StartingActivityFC extends AppCompatActivity {
         }
     }
 
+    /**
+     * Set the size of the board for applicable games.
+     * @param size int
+     */
     public void setBoardSize(int size) {
         BoardFC.NUM_ROWS = size;
         BoardFC.NUM_COLS = size;
     }
 
+    /**
+     * Indicate when there is no game saved to load
+     */
     public void makeNoLoadedGameToast() {
         Toast.makeText(this, "There is no game to load!", Toast.LENGTH_SHORT).show();
     }

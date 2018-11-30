@@ -68,7 +68,11 @@ public class TileFC extends Tile implements Serializable {
         isUp = true;
     }
 
-    public boolean isUp() {
+    /**
+     * Getter for field.
+     * @return boolean
+     */
+    public boolean getisUp() {
         return isUp;
     }
 

@@ -55,6 +55,9 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
     private GestureDetectGridView2048 gridView;
     private static int columnWidth, columnHeight;
 
+    /**
+     * Chronometer object
+     */
     Chronometer simpleChronometer;
 
     /**
@@ -219,6 +222,11 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
         }
     }
 
+    /**
+     * Update the observers
+     * @param o observable object
+     * @param arg object bring observed
+     */
     @Override
     public void update(Observable o, Object arg) {
         autoSave(StartingActivity2048.SAVE_FILENAME_2048);

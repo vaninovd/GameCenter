@@ -59,7 +59,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="30dp"
-        android:text="Select a free game to play:"
+        android:text="Select a Game to Play:"
         android:textColor="@color/colorAccent"
         android:textSize="30sp"
         android:textStyle="bold"

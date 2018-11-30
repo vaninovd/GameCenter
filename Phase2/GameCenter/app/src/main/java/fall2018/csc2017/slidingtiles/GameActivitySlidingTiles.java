@@ -216,6 +216,12 @@ public class GameActivitySlidingTiles extends AppCompatActivity implements Obser
         }
     }
 
+
+    /**
+     * Update the observers
+     * @param o observable object
+     * @param arg object bring observed
+     */
     @Override
     public void update(Observable o, Object arg) {
         autoSave(StartingActivitySlidingTiles.SAVE_FILENAME_SLIDING_TILES);

@@ -98,12 +98,12 @@ public class TestTileFC {
         setUp6X6();
         TileFC tile1 = (TileFC) board.tiles[1][2];
         TileFC tile2 = (TileFC) board6x6.tiles[5][5];
-        assertFalse(tile2.isUp());
-        assertFalse(tile1.isUp());
+        assertFalse(tile2.getisUp());
+        assertFalse(tile1.getisUp());
         tile1.showPicture();
         tile2.showPicture();
-        assertTrue(tile1.isUp());
-        assertTrue(tile2.isUp());
+        assertTrue(tile1.getisUp());
+        assertTrue(tile2.getisUp());
         tearDown4X4();
         tearDown6X6();
     }

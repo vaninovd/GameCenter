@@ -196,11 +196,18 @@ public class StartingActivitySlidingTiles extends AppCompatActivity {
         }
     }
 
+    /**
+     * Set the size of the board for applicable games.
+     * @param size int
+     */
     public void setBoardSize(int size) {
         BoardSlidingTiles.NUM_ROWS = size;
         BoardSlidingTiles.NUM_COLS = size;
     }
 
+    /**
+     * Indicate to user that there is no game to load.
+     */
     public void makeNoLoadedGameToast() {
         Toast.makeText(this, "There is no game to load!", Toast.LENGTH_SHORT).show();
     }

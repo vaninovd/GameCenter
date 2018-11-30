@@ -27,21 +27,42 @@ public class CustomAdapter2048 extends BaseAdapter {
         mColumnHeight = columnHeight;
     }
 
+    /**
+     * Gets the number of tiles in the current board.
+     * @return int
+     */
     @Override
     public int getCount() {
         return mButtons.size();
     }
 
+    /**
+     * Returns tile at given index
+     * @param position int
+     * @return Object
+     */
     @Override
     public Object getItem(int position) {
         return mButtons.get(position);
     }
 
+    /**
+     * Get the value of the picture
+     * @param position int
+     * @return long
+     */
     @Override
     public long getItemId(int position) {
         return position;
     }
 
+    /**
+     * Get the current view of the context
+     * @param position int
+     * @param convertView View
+     * @param parent ViewGroup
+     * @return View
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Button button;
