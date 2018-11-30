@@ -3,6 +3,7 @@ package fall2018.csc2017.slidingtiles;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -15,6 +16,8 @@ public class TestBoard2048 {
 
     public void tearDown() {
         this.board = new Board2048();
+        Board2048.resetScore();
+        Board2048.resetNumMoves();
     }
 
     @Test
@@ -26,10 +29,7 @@ public class TestBoard2048 {
                 new Tile2048(0)};
         this.board.tiles[0] = temp;
         this.board.mergeLeft();
-        boolean exp = (this.board.tiles[0][0].getId() == 2) &
-                (this.board.tiles[0][1].getId() == 0) &
-                (this.board.tiles[0][2].getId() == 0) &
-                (this.board.tiles[0][3].getId() == 0);
+        boolean exp = (this.board.tiles[0][0].getId() == 2);
         assertTrue(exp);
         tearDown();
     }
@@ -43,9 +43,7 @@ public class TestBoard2048 {
         this.board.tiles[3][0] = new Tile2048(1);
         this.board.mergeUp();
         boolean exp = (this.board.tiles[0][0].getId() == 2) &
-                (this.board.tiles[1][0].getId() == 2) &
-                (this.board.tiles[2][0].getId() == 0) &
-                (this.board.tiles[3][0].getId() == 0);
+                      (this.board.tiles[1][0].getId() == 2);
         assertTrue(exp);
         tearDown();
     }
@@ -59,10 +57,7 @@ public class TestBoard2048 {
                 new Tile2048(0)};
         this.board.tiles[0] = temp;
         this.board.mergeRight();
-        boolean exp = (this.board.tiles[0][0].getId() == 0) &
-                (this.board.tiles[0][1].getId() == 0) &
-                (this.board.tiles[0][2].getId() == 0) &
-                (this.board.tiles[0][3].getId() == 2);
+        boolean exp = (this.board.tiles[0][3].getId() == 2);
         assertTrue(exp);
         tearDown();
     }
@@ -74,11 +69,9 @@ public class TestBoard2048 {
         this.board.tiles[1][0] = new Tile2048(1);
         this.board.tiles[2][0] = new Tile2048(1);
         this.board.tiles[3][0] = new Tile2048(1);
-        this.board.mergeUp();
-        boolean exp = (this.board.tiles[0][0].getId() == 0) &
-                (this.board.tiles[1][0].getId() == 0) &
-                (this.board.tiles[2][0].getId() == 2) &
-                (this.board.tiles[3][0].getId() == 2);
+        this.board.mergeDown();
+        boolean exp = (this.board.tiles[2][0].getId() == 2) &
+                      (this.board.tiles[3][0].getId() == 2);
         assertTrue(exp);
         tearDown();
     }
@@ -92,77 +85,110 @@ public class TestBoard2048 {
         tearDown();
     }
 
-//    @Test
-//    public void testMakeTempCopy() {
-//        setUp();
-//        Tile2048[][] copy = board.makeTempCopy(board.tiles);
-//        assertNotEquals(copy, this.board);
-//        tearDown();
-//    }
-
     @Test
-    public void testPushLeft() {}
-
-    @Test
-    public void testPushUp() {}
-
-    @Test
-    public void testPushRight() {}
-
-    @Test
-    public void testPushDown() {}
-
-    @Test
-    public void testSpawnTile() {
+    public void testMakeTempCopy() {
         setUp();
-        boolean exp = false;
-        int count = 0;
-        outer:
-        for (int row = 0; row != Board2048.NUM_ROWS; row++) {
-            for (int col = 0; col != Board2048.NUM_COLS; col++) {
-                if ((board.tiles[row][col].getId() != 0) & count == 2) {
-                    exp = true;
-                    break outer;
-                } else {
-                    count++;
-                }
-            }
-        }
-        assertTrue(exp);
+        Tile[][] copy = board.makeTempCopy(board.tiles);
+        assertNotEquals(copy, this.board);
         tearDown();
     }
 
     @Test
-    public void testIsSpawnable() {}
-
-//    @Test
-//    public void testGetEmptySpots() {
-//        setUp();
-//        int[] expSpot = {2, 2};
-//        for (int row = 0; row != Board2048.NUM_ROWS; row++) {
-//            for (int col = 0; col != Board2048.NUM_COLS; col++) {
-//                if (row != 2 & col != 2) {
-//                    board.tiles[row][col] = new Tile2048(1);
-//                }
-//            }
-//        }
-//        int[] act = board.getEmptySpots()[0];
-//        assertArrayEquals(expSpot, act);
-//        tearDown();
-//    }
-
-    @Test
-    public void testHasHoles() {}
-
-    @Test
-    public void testIsStuck() {}
+    public void testIsStuck() {
+        setUp();
+        assertFalse(this.board.isStuck());
+        Tile2048[][] newTiles = new Tile2048[Board2048.NUM_ROWS][Board2048.NUM_COLS];
+        int count=1;
+        for (int row = 0; row != Board2048.NUM_ROWS; row++) {
+            for (int col = 0; col != Board2048.NUM_COLS; col++) {
+                if (count == 12) {
+                    count = 1;
+                } else {
+                    count++;
+                }
+                newTiles[row][col] = new Tile2048(count);
+            }
+        }
+        this.board.tiles = newTiles;
+        assertTrue(this.board.isStuck());
+        tearDown();
+    }
 
     @Test
-    public void testIsStuckHoriontal() {}
+    public void testIterator() {
+        setUp();
+        int count = 0;
+        for (Tile i : this.board) {
+            count++;
+        }
+        assertEquals(16, count);
+        tearDown();
+    }
 
     @Test
-    public void testIsStuckVertical() {}
+    public void testGetScore() {
+        setUp();
+        Tile2048[] temp = {new Tile2048(1),
+                new Tile2048(1),
+                new Tile2048(0),
+                new Tile2048(0)};
+        this.board.tiles[0] = temp;
+        this.board.mergeRight();
+        assertEquals(4, Board2048.getScore());
+        tearDown();
+    }
 
     @Test
-    public void testIterator() {}
+    public void testResetScore() {
+        setUp();
+        Tile2048[] temp = {new Tile2048(1),
+                new Tile2048(1),
+                new Tile2048(0),
+                new Tile2048(0)};
+        this.board.tiles[0] = temp;
+        this.board.mergeRight();
+        Board2048.resetScore();
+        assertEquals(0, Board2048.getScore());
+        tearDown();
+    }
+
+    @Test
+    public void testGetScoreAdded() {
+        setUp();
+        Tile2048[] temp = {new Tile2048(1),
+                new Tile2048(1),
+                new Tile2048(0),
+                new Tile2048(0)};
+        this.board.tiles[0] = temp;
+        this.board.mergeRight();
+        assertEquals(4, Board2048.getScoreAdded());
+        tearDown();
+    }
+
+    @Test
+    public void testGetNumMoves() {
+        setUp();
+        Tile2048[] temp = {new Tile2048(1),
+                new Tile2048(1),
+                new Tile2048(0),
+                new Tile2048(0)};
+        this.board.tiles[0] = temp;
+        this.board.mergeRight();
+        assertEquals(1, Board2048.getNumMoves());
+        tearDown();
+    }
+
+    @Test
+    public void testResetNumMoves() {
+        setUp();
+        Tile2048[] temp = {new Tile2048(1),
+                new Tile2048(1),
+                new Tile2048(0),
+                new Tile2048(0)};
+        this.board.tiles[0] = temp;
+        this.board.mergeRight();
+        Board2048.resetNumMoves();
+        assertEquals(0, Board2048.getNumMoves());
+        tearDown();
+    }
 }

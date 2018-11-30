@@ -7,7 +7,7 @@ import static fall2018.csc2017.slidingtiles.BoardManagerSlidingTiles.getNumMoves
 
 public class MovementControllerSlidingTiles {
 
-    private BoardManagerSlidingTiles boardManager = null;
+    private BoardManagerSlidingTiles boardManager;
 
     public MovementControllerSlidingTiles() {
     }

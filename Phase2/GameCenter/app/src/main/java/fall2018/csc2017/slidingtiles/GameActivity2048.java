@@ -198,11 +198,8 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      * @param fileName the name of the file
      */
     public void autoSave(String fileName){
-        if (((Board2048)boardManager.getBoard()).getNumMoves() % 3 == 0) {
+        if (Board2048.getNumMoves() % 3 == 0) {
             saveToFile(fileName);
-            Toast toast = Toast.makeText(this, "Your Game was saved!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
-            toast.show();
         }
     }
 

@@ -7,7 +7,7 @@ import static fall2018.csc2017.slidingtiles.BoardManagerFC.getNumMoves;
 
 public class MovementControllerFC {
 
-    private BoardManagerFC boardManagerFC = null;
+    private BoardManagerFC boardManagerFC;
 
     public MovementControllerFC() {
     }

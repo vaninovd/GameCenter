@@ -68,18 +68,13 @@ public class Board2048 extends Board implements Serializable, Iterable<Tile> {
     }
 
     /**
-     * Resets the number of moves at the beginning of a game
-     */
-    public static void resetNumMoves(){
-        numMoves = 0;
-    }
-
-    /**
      * Resets the score at the beginning of a game
      */
     public static void resetScore() {
         score = 0;
     }
+
+    public static void resetNumMoves() {numMoves = 0;}
 
     /**
      * Return the tile at (row, col)
@@ -401,25 +396,6 @@ public class Board2048 extends Board implements Serializable, Iterable<Tile> {
             }
         }
         return stuck;
-    }
-
-    /**
-     * Prints string representatation of board
-     * @return String
-     */
-    @Override
-    public String toString() {
-        StringBuilder ret = new StringBuilder();
-        ret.append("[");
-        for (int row = 0; row < 4; row ++) {
-            ret.append("[");
-            for (int col = 0; col < 4; col ++) {
-                ret.append(Math.pow(2, tiles[row][col].getId()));
-            }
-            ret.append("]");
-        }
-        ret.append("]");
-        return ret.toString();
     }
 
     /**

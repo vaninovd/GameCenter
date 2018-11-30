@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 public class MovementController2048 {
 
-    private BoardManager2048 boardManager = null;
+    private BoardManager2048 boardManager;
 
     public MovementController2048() {
     }
