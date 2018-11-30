@@ -8,17 +8,6 @@ import java.io.Serializable;
 public class TileSlidingTiles extends Tile implements Serializable {
 
     /**
-     * A TileSlidingTiles with id and background. The background may not have a corresponding image.
-     *
-     * @param id         the id
-     * @param background the background
-     */
-    TileSlidingTiles(int id, int background) {
-        this.id = id;
-        this.background = background;
-    }
-
-    /**
      * A tile with a background id; look up and set the id.
      *
      * @param backgroundId
