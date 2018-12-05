@@ -20,16 +20,13 @@ Each team member agrees to do the following:
 - I will help my team to understand every concept in the project.
 - If I do not understand a concept or code, I will immediately ask my team for help.
 
+We will work in pairs on eah of the games, except Dennis, who will create unit tests for Sliding Tiles 
+as well as fix the sliding tiles unsolvability issue and help prepare tiles for each of the two new games.
 
-We will work individually, each on one feature of the game. After our individual work is done, we
-will split into pairs/groups of three to combine the features. 
 The following is the breakdown of individual work:
 
-
-Pavel - Undo functionality.
-Nikita - GameCenter functionality.
-Winnie - ScoreBoard functionality.
-Jamal - AutoSave functionality.
-Dennis - Different Board sizes.
+Pavel and Jamal - Flip Card game and corresponding unit tests.
+Nikita and Winnie - 2048 Game and corresponding unit tests.
+Dennis - Imagery for two new games, Sliding Tiles unit tests, unsolvability issue in Sliding Tiles. 
 
 If a member finishes their part, he/she helps another member finish theirs.
