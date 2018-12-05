@@ -12,7 +12,7 @@
     <string name="please_enter_your_credentials">Please enter your credentials.</string>
     <string name="finish">Finish</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="welcome_to_sliding_tiles_n_a_puzzle_game_where_you_must_arrange_the_numbers_in_the_correct_order">Welcome To Sliding Tiles   A Puzzle Game where you must arrange the numbers in the correct order</string>
+    <string name="welcome_to_sliding_tiles_n_a_puzzle_game_where_you_must_arrange_the_numbers_in_the_correct_order">Welcome To Sliding Tiles! Arrange the numbers in ascending order!</string>
     <string name="new_game">New Game</string>
     <string name="load_saved_game">Load Saved Game</string>
     <string name="save_game">Save Game</string>

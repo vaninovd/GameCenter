@@ -23,23 +23,24 @@ public class StartingActivity2048 extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static String SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "2048.ser";
+    public static String SAVE_FILENAME_2048 = LoginActivity.usersManager.getCurrentUser() + "2048.ser";
 
     /**
      * A temporary save file.
      */
-    public static String TEMP_SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "2048_temp.ser";
+    public static String TEMP_SAVE_FILENAME = LoginActivity.usersManager.getCurrentUser() + "2048_temp.ser";
     /**
      * The board manager.
      */
     protected BoardManager2048 boardManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         boardManager = new BoardManager2048();
         saveToFile(TEMP_SAVE_FILENAME);
-
+        System.out.println(LoginActivity.usersManager.getCurrentUser());
         setContentView(R.layout.activity_starting_2048);
         addStartButtonListener();
         addLoadButtonListener();
@@ -59,6 +60,8 @@ public class StartingActivity2048 extends AppCompatActivity {
                 //set user score to zero
                 boardManager = new BoardManager2048();
                 Board2048.resetScore();
+                Board2048.resetNumMoves();
+                Board2048.resetScoreAdded();
                 switchToGame();
             }
         });
@@ -72,7 +75,7 @@ public class StartingActivity2048 extends AppCompatActivity {
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFromFile(SAVE_FILENAME);
+                loadFromFile(SAVE_FILENAME_2048);
                 saveToFile(TEMP_SAVE_FILENAME);
                 if (boardManager != null) {
                     makeToastLoadedText();
@@ -120,7 +123,7 @@ public class StartingActivity2048 extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveToFile(SAVE_FILENAME);
+                saveToFile(SAVE_FILENAME_2048);
                 saveToFile(TEMP_SAVE_FILENAME);
                 makeToastSavedText();
             }
@@ -166,6 +169,7 @@ public class StartingActivity2048 extends AppCompatActivity {
                 boardManager = (BoardManager2048) input.readObject();
                 if (boardManager != null) {
                     setBoardSize();
+//                    simpleChronometer.start();
                 }
                 inputStream.close();
             }

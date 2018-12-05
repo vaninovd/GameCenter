@@ -36,6 +36,11 @@ public class Tile extends Observable implements Comparable<Tile>, Serializable {
     }
 
 
+    /**
+     * Comparator for two tile objects by Id (value)
+     * @param o Tile object
+     * @return int
+     */
     @Override
     public int compareTo(@NonNull Tile o) {
         return o.id - this.id;

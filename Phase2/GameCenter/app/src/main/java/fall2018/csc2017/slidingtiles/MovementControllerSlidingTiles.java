@@ -7,7 +7,7 @@ import static fall2018.csc2017.slidingtiles.BoardManagerSlidingTiles.getNumMoves
 
 public class MovementControllerSlidingTiles {
 
-    private BoardManagerSlidingTiles boardManager = null;
+    private BoardManagerSlidingTiles boardManager;
 
     public MovementControllerSlidingTiles() {
     }
@@ -28,8 +28,8 @@ public class MovementControllerSlidingTiles {
             boardManager.touchMove(position);
             if (boardManager.gameWon()) {
                 Toast.makeText(context, "YOU WIN! Check out the LEADERBOARD!", Toast.LENGTH_SHORT).show();
-                String username = UserManager.currentUser;
-                User curruser = LoginActivity.users.getUser(username);
+                String username = LoginActivity.usersManager.getCurrentUser();
+                User curruser = LoginActivity.usersManager.getUser(username);
                 int score = BoardManagerSlidingTiles.getNumMoves();
                 curruser.addScore(StartingActivitySlidingTiles.name, score);
             }

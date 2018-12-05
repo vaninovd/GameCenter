@@ -12,32 +12,22 @@ public class TileFC extends Tile implements Serializable {
      */
     private boolean isUp;
 
-    private Object[] pics6x6 = {R.drawable.tile_1, R.drawable.tile_2, R.drawable.tile_3, R.drawable.tile_4,
-            R.drawable.tile_5, R.drawable.tile_6, R.drawable.tile_7, R.drawable.tile_8,
-            R.drawable.tile_9, R.drawable.tile_10, R.drawable.tile_11, R.drawable.tile_12,
-            R.drawable.tile_13, R.drawable.tile_14, R.drawable.tile_15, R.drawable.tile_16,
-            R.drawable.tile_17, R.drawable.tile_18, R.drawable.tile_1, R.drawable.tile_2, R.drawable.tile_3, R.drawable.tile_4,
-            R.drawable.tile_5, R.drawable.tile_6, R.drawable.tile_7, R.drawable.tile_8,
-            R.drawable.tile_9, R.drawable.tile_10, R.drawable.tile_11, R.drawable.tile_12,
-            R.drawable.tile_13, R.drawable.tile_14, R.drawable.tile_15, R.drawable.tile_16,
-            R.drawable.tile_17, R.drawable.tile_18};
+    private Object[] pics6x6 = {R.drawable.fc_dh, R.drawable.fc_bg, R.drawable.fc_pg,
+            R.drawable.fc_tf, R.drawable.fc_jc, R.drawable.fc_dl, R.drawable.fc_dj,
+            R.drawable.fc_js, R.drawable.fc_jt, R.drawable.fc_mz, R.drawable.fc_fp,
+            R.drawable.fc_jc_, R.drawable.fc_kr, R.drawable.fc_sj, R.drawable.fc_dh2,
+            R.drawable.fc_se, R.drawable.fc_at, R.drawable.fc_mg, R.drawable.fc_dh,
+            R.drawable.fc_bg, R.drawable.fc_pg, R.drawable.fc_tf, R.drawable.fc_jc,
+            R.drawable.fc_dl, R.drawable.fc_dj, R.drawable.fc_js, R.drawable.fc_jt,
+            R.drawable.fc_mz, R.drawable.fc_fp, R.drawable.fc_jc_, R.drawable.fc_kr,
+            R.drawable.fc_sj, R.drawable.fc_dh2, R.drawable.fc_se, R.drawable.fc_at,
+            R.drawable.fc_mg};
 
-    private Object[] pics4x4 = {R.drawable.tile_1, R.drawable.tile_2, R.drawable.tile_3, R.drawable.tile_4,
-            R.drawable.tile_5, R.drawable.tile_6, R.drawable.tile_7, R.drawable.tile_8,
-            R.drawable.tile_1, R.drawable.tile_2, R.drawable.tile_3, R.drawable.tile_4,
-            R.drawable.tile_5, R.drawable.tile_6, R.drawable.tile_7, R.drawable.tile_8};
-
-    /**
-     * A TileFC with id and background. The background may not have a corresponding image.
-     *
-     * @param id         the id
-     * @param background the background
-     */
-    TileFC(int id, int background) {
-        this.id = id;
-        this.background = background;
-
-    }
+    private Object[] pics4x4 = {R.drawable.fc_dh, R.drawable.fc_bg, R.drawable.fc_pg,
+            R.drawable.fc_tf, R.drawable.fc_jc, R.drawable.fc_dl, R.drawable.fc_dj,
+            R.drawable.fc_js, R.drawable.fc_dh, R.drawable.fc_bg, R.drawable.fc_pg,
+            R.drawable.fc_tf, R.drawable.fc_jc, R.drawable.fc_dl, R.drawable.fc_dj,
+            R.drawable.fc_js};
 
     /**
      * A tile with a background id; look up and set the id.
@@ -78,7 +68,11 @@ public class TileFC extends Tile implements Serializable {
         isUp = true;
     }
 
-    public boolean isUp() {
+    /**
+     * Getter for field.
+     * @return boolean
+     */
+    public boolean getisUp() {
         return isUp;
     }
 

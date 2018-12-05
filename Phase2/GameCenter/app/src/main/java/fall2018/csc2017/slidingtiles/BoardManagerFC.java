@@ -95,7 +95,7 @@ class BoardManagerFC extends BoardManager implements Serializable {
      */
     boolean gameWon() {
         for (Tile t : this.board) {
-            if (!((TileFC)t).isUp()) {
+            if (!((TileFC)t).getisUp()) {
                 return false;
             }
         }
@@ -109,7 +109,7 @@ class BoardManagerFC extends BoardManager implements Serializable {
      * @return whether the tile at position is surrounded by a blank tile
      */
     boolean isValidTap(int position) {
-        return !((TileFC)board.getTile(position)).isUp();
+        return !((TileFC)board.getTile(position)).getisUp();
     }
 
     /**

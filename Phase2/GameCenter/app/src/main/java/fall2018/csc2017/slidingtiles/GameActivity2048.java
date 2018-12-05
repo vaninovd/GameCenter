@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,12 +23,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
-//TODO: JAVADOCS AND AUTOSAVE
+
 
 /**
  * The game activity.
  */
 public class GameActivity2048 extends AppCompatActivity implements Observer {
+
 
     /**
      * The board manager.
@@ -38,6 +40,8 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      * The buttons to display.
      */
     private ArrayList<Button> tileButtons;
+
+    long base;
 
     /**
      * Constants for swiping directions. Should be an enum, probably.
@@ -50,6 +54,11 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
     // Grid View and calculated column height and width based on device size
     private GestureDetectGridView2048 gridView;
     private static int columnWidth, columnHeight;
+
+    /**
+     * Chronometer object
+     */
+    Chronometer simpleChronometer;
 
     /**
      * Set up the background image for each button based on the master list
@@ -83,6 +92,12 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
         gridView.setNumColumns(Board2048.NUM_COLS);
         gridView.setBoardManager(boardManager);
         boardManager.getBoard().addObserver(this);
+
+        simpleChronometer = (Chronometer) findViewById(R.id.simpleChronometer);
+        simpleChronometer.start();
+        simpleChronometer.setFormat("Time Spent - %s");
+
+
         // Observer sets up desired dimensions as well as calls our display function
         gridView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -151,6 +166,7 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
     protected void onPause() {
         super.onPause();
         saveToFile(StartingActivity2048.TEMP_SAVE_FILENAME);
+        simpleChronometer.stop();
     }
 
     /**
@@ -159,12 +175,12 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      * @param fileName the name of the file
      */
     private void loadFromFile(String fileName) {
-
         try {
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
                 boardManager = (BoardManager2048) input.readObject();
+//                simpleChronometer.setBase(base);
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
@@ -182,10 +198,12 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      * @param fileName the name of the file
      */
     public void saveToFile(String fileName) {
+        base = simpleChronometer.getBase();
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput(fileName, MODE_PRIVATE));
             outputStream.writeObject(boardManager);
+            outputStream.writeObject(Long.toString(base));
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
@@ -198,17 +216,20 @@ public class GameActivity2048 extends AppCompatActivity implements Observer {
      * @param fileName the name of the file
      */
     public void autoSave(String fileName){
-        if (((Board2048)boardManager.getBoard()).getNumMoves() % 3 == 0) {
+        if (Board2048.getNumMoves() % 3 == 0) {
+            saveToFile(Long.toString(simpleChronometer.getBase()));
             saveToFile(fileName);
-            Toast toast = Toast.makeText(this, "Your Game was saved!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
-            toast.show();
         }
     }
 
+    /**
+     * Update the observers
+     * @param o observable object
+     * @param arg object bring observed
+     */
     @Override
     public void update(Observable o, Object arg) {
-        autoSave(StartingActivity2048.SAVE_FILENAME);
+        autoSave(StartingActivity2048.SAVE_FILENAME_2048);
         display();
         Toast.makeText(this, "+" + Integer.toString(Board2048.getScoreAdded()), Toast.LENGTH_SHORT).show();
     }

@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 public class MovementController2048 {
 
-    private BoardManager2048 boardManager = null;
+    private BoardManager2048 boardManager;
 
     public MovementController2048() {
     }
@@ -18,8 +18,8 @@ public class MovementController2048 {
     }
 
     public void recordScore() {
-        String username = UserManager.currentUser;
-        User curruser = LoginActivity.users.getUser(username);
+        String username = LoginActivity.usersManager.getCurrentUser();
+        User curruser = LoginActivity.usersManager.getUser(username);
         int score = Board2048.getScore();
         curruser.addScore(StartingActivity2048.name, score);
     }

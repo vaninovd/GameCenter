@@ -3,6 +3,7 @@ package fall2018.csc2017.slidingtiles;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,12 +24,12 @@ public class StartingActivityFC extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static String SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "FC.ser";
+    public static String SAVE_FILENAME_FC = LoginActivity.usersManager.getCurrentUser() + "FC.ser";
 
     /**
      * A temporary save file.
      */
-    public static String TEMP_SAVE_FILENAME = LoginActivity.users.getCurrentUser() + "FC_temp.ser";
+    public static String TEMP_SAVE_FILENAME = LoginActivity.usersManager.getCurrentUser() + "FC_temp.ser";
     /**
      * The board manager.
      */
@@ -37,9 +38,11 @@ public class StartingActivityFC extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_YES);
         boardManager = new BoardManagerFC();
         saveToFile(TEMP_SAVE_FILENAME);
-
+        System.out.println(LoginActivity.usersManager.getCurrentUser());
         setContentView(R.layout.activity_starting_flip_card);
         addStartButtonListener();
         addLoadButtonListener();
@@ -87,7 +90,7 @@ public class StartingActivityFC extends AppCompatActivity {
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFromFile(SAVE_FILENAME);
+                loadFromFile(SAVE_FILENAME_FC);
                 saveToFile(TEMP_SAVE_FILENAME);
                 if (boardManager != null) {
                     makeToastLoadedText();
@@ -114,7 +117,7 @@ public class StartingActivityFC extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveToFile(SAVE_FILENAME);
+                saveToFile(SAVE_FILENAME_FC);
                 saveToFile(TEMP_SAVE_FILENAME);
                 makeToastSavedText();
             }
@@ -197,11 +200,18 @@ public class StartingActivityFC extends AppCompatActivity {
         }
     }
 
+    /**
+     * Set the size of the board for applicable games.
+     * @param size int
+     */
     public void setBoardSize(int size) {
         BoardFC.NUM_ROWS = size;
         BoardFC.NUM_COLS = size;
     }
 
+    /**
+     * Indicate when there is no game saved to load
+     */
     public void makeNoLoadedGameToast() {
         Toast.makeText(this, "There is no game to load!", Toast.LENGTH_SHORT).show();
     }

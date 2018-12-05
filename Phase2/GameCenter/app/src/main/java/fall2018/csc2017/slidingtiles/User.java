@@ -49,15 +49,6 @@ public class User implements Comparable<User>, Serializable {
     }
 
     /**
-     * Return the hashmap containing the scores of this user for various games.
-     * @return hashmap scores with user's scores
-     */
-    public HashMap getScores() {
-        return scores;
-    }
-
-
-    /**
      * Add a score that user scored in game to hashmap that stores the scores.
      * @param game name of the game for which to record the score
      * @param score score to record
@@ -68,21 +59,6 @@ public class User implements Comparable<User>, Serializable {
         } else {
             scores.put(game, score);
         }
-    }
-
-    /**
-     * Return the score for the game.
-     * @param game game to return the score for
-     * @return int score for game
-     */
-    public int getGameScore(String game) {
-        int score;
-        if (scores.containsKey(game)){
-            score = scores.get(game);
-        } else {
-            score = 0;
-        }
-        return score;
     }
 
     /**

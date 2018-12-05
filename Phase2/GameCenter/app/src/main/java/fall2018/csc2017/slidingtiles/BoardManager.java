@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 public abstract class BoardManager implements Serializable {
 
+    /**
+     * Size of the board
+     */
     public int size = Board.NUM_COLS;
 
     /**
@@ -18,5 +21,9 @@ public abstract class BoardManager implements Serializable {
         return board;
     }
 
+    /**
+     * Method that detects if game is in a winning state
+     * @return boolean
+     */
     abstract boolean gameWon();
 }

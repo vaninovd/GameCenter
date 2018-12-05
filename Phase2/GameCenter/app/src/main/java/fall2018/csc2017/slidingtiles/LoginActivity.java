@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * UserManager to manage all users on this device.
      */
-    public static UserManager users;
+    public static UserManager usersManager;
 
     /**
      * File name for users save.
@@ -43,10 +43,10 @@ public class LoginActivity extends AppCompatActivity {
                 AppCompatDelegate.MODE_NIGHT_YES);
         super.onCreate(savedInstanceState);
         loadFromFile(USER_SAVE);
-        if (users == null) {
-            users = new UserManager();
+        if (usersManager == null) {
+            usersManager = new UserManager();
         }
-        users.addUser("admin", "admin");
+        usersManager.addUser("admin", "admin");
         setContentView(R.layout.activity_landing);
         addSignInButtonListener();
         addSignUpButtonListener();
@@ -62,11 +62,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText username = findViewById(R.id.email);
                 EditText pass = findViewById(R.id.pass);
-                if (!users.hasUser(username.getText().toString())) {
+                if (!usersManager.hasUser(username.getText().toString())) {
                     makeNoAccountToast();
-                } else if (users.checkCredentials(username.getText().toString(), pass.getText().toString())) {
-                    users.setCurrentUser(username.getText().toString());
-                    setSaveFilename(UserManager.getCurrentUser());
+                } else if (usersManager.checkCredentials(username.getText().toString(), pass.getText().toString())) {
+                    usersManager.setCurrentUser(username.getText().toString());
+                    setSaveFilename(usersManager.getCurrentUser());
                     switchToGamesActivity();
 //                    switchToSlidingTiles();
                 } else {
@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput(fileName, MODE_PRIVATE));
-            outputStream.writeObject(users);
+            outputStream.writeObject(usersManager);
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
@@ -152,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                users = (UserManager) input.readObject();
+                usersManager = (UserManager) input.readObject();
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
@@ -169,7 +169,11 @@ public class LoginActivity extends AppCompatActivity {
      * @param filename The filename we wish to change to.
      */
     public void setSaveFilename(String filename) {
-        StartingActivitySlidingTiles.SAVE_FILENAME = filename + ".ser";
+        StartingActivitySlidingTiles.SAVE_FILENAME_SLIDING_TILES = filename + "SlidingTiles.ser";
+        StartingActivityFC.SAVE_FILENAME_FC = filename + "FC.ser";
+        StartingActivity2048.SAVE_FILENAME_2048 = filename + "2048.ser";
+        StartingActivityFC.TEMP_SAVE_FILENAME = filename + "FC_temp.ser";
+        StartingActivity2048.TEMP_SAVE_FILENAME = filename + "2048_temp.ser";
         StartingActivitySlidingTiles.TEMP_SAVE_FILENAME = filename + "_temp.ser";
     }
 }
