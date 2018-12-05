@@ -1,16 +1,16 @@
-Contact Information:
+# Contact Information:
 
-Name:                       Phone:                  E-mail:
+**Name**:                       **Phone**:                  **E-mail**:
 Pavel Golikov               647-863-4112            pavel.golikov@alum.utoronto.ca
 Nikita Shumeiko             416-400-1204            nikita.shumeiko@mail.utoronto.ca
 Dzhamaldin Vaninov          778-865-4664            j.vaninov@mail.utoronto.ca
-Winnie Xu                   647-939-1869            winnie.xu@mail.utoronto.ca
+Winnie Xu                   647-939-1869            winnie.xu97@gmail.com
 Denys Markovchyn            647-877-4212            dennis.markovchyn@mail.utoronto.ca
 
-
+# Team Communication
 For group team communication we will use Slack.
 
-
+# Team Contract
 Each team member agrees to do the following:
 
 - I will get my allotted work done on time.
@@ -21,7 +21,7 @@ Each team member agrees to do the following:
 - If I do not understand a concept or code, I will immediately ask my team for help.
 
 We will work in pairs on eah of the games, except Dennis, who will create unit tests for Sliding Tiles 
-as well as fix the sliding tiles unsolvability issue and help prepare tiles for each of the two new games.
+as well as fix the sliding tiles unsolvability issue and help prepare tiles and UI elements for each of the two new games.
 
 The following is the breakdown of individual work:
 
